@@ -7,7 +7,30 @@
 
 import UIKit
 
+struct Movie {
+    var mainTitle: String
+    var rate: Float
+}
+
+struct MovieInfo {
+    
+    let movie = [
+        Movie(mainTitle: "암살", rate: 9.10),
+        Movie(mainTitle: "명량", rate: 8.88),
+        Movie(mainTitle: "광해", rate: 9.25),
+        Movie(mainTitle: "부산행", rate: 8.60),
+        Movie(mainTitle: "아바타", rate: 9.07),
+        Movie(mainTitle: "어벤져스엔드게임", rate: 9.49),
+        Movie(mainTitle: "해운대", rate: 7.45),
+        Movie(mainTitle: "7번방의선물", rate: 8.83),
+        Movie(mainTitle: "겨울왕국2", rate: 8.95)
+    ]
+
+}
+
 class BookCollectionViewController: UICollectionViewController {
+    
+    var movieList = MovieInfo()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +59,7 @@ class BookCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movieList.movie.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -44,8 +67,11 @@ class BookCollectionViewController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
-        cell.titleLabel.text = "타이틀"
-        cell.rateLabel.text = "1.11"
+        let item = movieList.movie[indexPath.item]
+        
+        cell.titleLabel.text = item.mainTitle
+        cell.rateLabel.text = "\(item.rate)"
+        
         cell.backView.backgroundColor = .darkGray
         cell.bookImageView.image = UIImage(systemName: "star")
         
