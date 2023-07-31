@@ -13,5 +13,17 @@ class BookCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var bookImageView: UIImageView!
+    
+    func configureCell(item: Movie) {
+        
+        titleLabel.configureTitleText(title: item.mainTitle, fontSize: 18)
+        rateLabel.text = "\(item.rate)"
+        rateLabel.font = .systemFont(ofSize: 13)
+        
+        backView.backgroundColor = .systemGray6
+        backView.layer.cornerRadius = 15
+        
+        bookImageView.image = UIImage(named: item.mainTitle)
+    }
 
 }

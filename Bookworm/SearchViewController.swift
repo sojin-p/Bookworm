@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
         
         let xMarkImage = UIImage(systemName: "xmark")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .black
         
     }
     

@@ -7,27 +7,6 @@
 
 import UIKit
 
-struct Movie {
-    var mainTitle: String
-    var rate: Float
-}
-
-struct MovieInfo {
-    
-    let movie = [
-        Movie(mainTitle: "암살", rate: 9.10),
-        Movie(mainTitle: "명량", rate: 8.88),
-        Movie(mainTitle: "광해", rate: 9.25),
-        Movie(mainTitle: "부산행", rate: 8.60),
-        Movie(mainTitle: "아바타", rate: 9.07),
-        Movie(mainTitle: "어벤져스엔드게임", rate: 9.49),
-        Movie(mainTitle: "해운대", rate: 7.45),
-        Movie(mainTitle: "7번방의선물", rate: 8.83),
-        Movie(mainTitle: "겨울왕국2", rate: 8.95)
-    ]
-
-}
-
 class BookCollectionViewController: UICollectionViewController {
     
     var movieList = MovieInfo()
@@ -39,6 +18,7 @@ class BookCollectionViewController: UICollectionViewController {
         
         let searchImage = UIImage(systemName: "magnifyingglass")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
         let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
@@ -91,11 +71,7 @@ class BookCollectionViewController: UICollectionViewController {
         
         let item = movieList.movie[indexPath.item]
         
-        cell.titleLabel.text = item.mainTitle
-        cell.rateLabel.text = "\(item.rate)"
-        
-        cell.backView.backgroundColor = .systemGray6
-        cell.bookImageView.image = UIImage(named: item.mainTitle)
+        cell.configureCell(item: item)
         
         return cell
     }
