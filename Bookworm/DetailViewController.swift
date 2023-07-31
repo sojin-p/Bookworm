@@ -10,11 +10,13 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var contents = ""
-
+    @IBOutlet var detailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(contents)
+        title = contents
+        detailLabel.text = "상세 화면"
 
     }
     

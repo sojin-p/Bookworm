@@ -81,9 +81,26 @@
                     <view key="view" contentMode="scaleToFill" id="RB6-Dm-Bhn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g20-Vd-Had">
+                                <rect key="frame" x="30" y="89" width="333" height="699"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="x2n-F3-WuH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x2n-F3-WuH" firstAttribute="bottom" secondItem="g20-Vd-Had" secondAttribute="bottom" constant="30" id="52h-XY-3Ag"/>
+                            <constraint firstItem="g20-Vd-Had" firstAttribute="top" secondItem="x2n-F3-WuH" secondAttribute="top" constant="30" id="Mry-Uv-xVP"/>
+                            <constraint firstItem="g20-Vd-Had" firstAttribute="leading" secondItem="x2n-F3-WuH" secondAttribute="leading" constant="30" id="PBW-08-3av"/>
+                            <constraint firstItem="x2n-F3-WuH" firstAttribute="trailing" secondItem="g20-Vd-Had" secondAttribute="trailing" constant="30" id="jWc-xq-k3T"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="detailLabel" destination="g20-Vd-Had" id="IPF-WG-TaI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIJ-pB-2dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
