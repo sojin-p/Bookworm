@@ -99,5 +99,10 @@ class BookCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    
+    //선택 시
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+    }
 
 }

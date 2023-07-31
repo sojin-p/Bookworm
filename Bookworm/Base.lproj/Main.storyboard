@@ -74,6 +74,21 @@
             </objects>
             <point key="canvasLocation" x="1170.2290076335878" y="3.5211267605633805"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="1Th-gy-Gq0">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="oTH-S9-Wdi" customClass="DetailViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RB6-Dm-Bhn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="x2n-F3-WuH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oIJ-pB-2dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="403"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="J0r-f5-n6K">
             <objects>

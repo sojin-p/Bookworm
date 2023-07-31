@@ -16,6 +16,7 @@
 		239071B72A77B2E800C52AFB /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071B62A77B2E800C52AFB /* BookCollectionViewController.swift */; };
 		239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071B82A77B33300C52AFB /* BookCollectionViewCell.swift */; };
 		239071BB2A77B33300C52AFB /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239071B92A77B33300C52AFB /* BookCollectionViewCell.xib */; };
+		239071BD2A77C89F00C52AFB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071BC2A77C89F00C52AFB /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		239071B62A77B2E800C52AFB /* BookCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewController.swift; sourceTree = "<group>"; };
 		239071B82A77B33300C52AFB /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		239071B92A77B33300C52AFB /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
+		239071BC2A77C89F00C52AFB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				239071B82A77B33300C52AFB /* BookCollectionViewCell.swift */,
 				239071B92A77B33300C52AFB /* BookCollectionViewCell.xib */,
 				239071A62A77B1F500C52AFB /* SearchViewController.swift */,
+				239071BC2A77C89F00C52AFB /* DetailViewController.swift */,
 				239071AB2A77B1F700C52AFB /* Assets.xcassets */,
 				239071AD2A77B1F700C52AFB /* LaunchScreen.storyboard */,
 				239071B02A77B1F700C52AFB /* Info.plist */,
@@ -151,6 +154,7 @@
 				239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */,
 				239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */,
 				239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */,
+				239071BD2A77C89F00C52AFB /* DetailViewController.swift in Sources */,
 				239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */,
 				239071B72A77B2E800C52AFB /* BookCollectionViewController.swift in Sources */,
 			);
