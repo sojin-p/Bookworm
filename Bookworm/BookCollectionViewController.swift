@@ -49,7 +49,15 @@ class BookCollectionViewController: UICollectionViewController {
     
     @objc
     func searchBarButtonClicked() {
-        print(#function)
+        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+        let searchVC = mainSB.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        let nav = UINavigationController(rootViewController: searchVC)
+        
+        nav.modalTransitionStyle = .coverVertical
+        nav.modalPresentationStyle = .fullScreen
+        
+        present(nav, animated: true)
+        
     }
     
     
