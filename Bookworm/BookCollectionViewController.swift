@@ -100,9 +100,11 @@ class BookCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    //선택 시
+    //셀 선택 시
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = mainSB.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 
 }
