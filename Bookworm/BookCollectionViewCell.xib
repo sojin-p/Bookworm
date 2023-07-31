@@ -22,19 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="146" height="151"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pi-hL-Stw">
-                                <rect key="frame" x="10" y="10" width="42" height="21"/>
+                                <rect key="frame" x="15" y="10" width="116" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hTH-UZ-m1e">
-                                <rect key="frame" x="56.666666666666664" y="50" width="74.333333333333343" height="99"/>
+                                <rect key="frame" x="51.666666666666664" y="45" width="79.333333333333343" height="106"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="hTH-UZ-m1e" secondAttribute="height" multiplier="3:4" id="Woi-BB-Siv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-KT-6lO">
-                                <rect key="frame" x="10" y="120" width="42" height="21"/>
+                                <rect key="frame" x="15" y="115" width="31" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,12 +43,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tRa-KT-6lO" firstAttribute="leading" secondItem="9pi-hL-Stw" secondAttribute="leading" id="971-ev-glq"/>
-                            <constraint firstAttribute="bottom" secondItem="tRa-KT-6lO" secondAttribute="bottom" constant="10" id="BDd-Je-Yv0"/>
-                            <constraint firstAttribute="bottom" secondItem="hTH-UZ-m1e" secondAttribute="bottom" constant="2" id="JI7-NK-ixh"/>
-                            <constraint firstItem="hTH-UZ-m1e" firstAttribute="top" secondItem="h3Y-x4-nOw" secondAttribute="top" constant="50" id="e9j-Is-5NT"/>
+                            <constraint firstAttribute="bottom" secondItem="tRa-KT-6lO" secondAttribute="bottom" constant="15" id="BDd-Je-Yv0"/>
+                            <constraint firstAttribute="bottom" secondItem="hTH-UZ-m1e" secondAttribute="bottom" id="JI7-NK-ixh"/>
+                            <constraint firstItem="hTH-UZ-m1e" firstAttribute="top" secondItem="h3Y-x4-nOw" secondAttribute="top" constant="45" id="e9j-Is-5NT"/>
                             <constraint firstAttribute="trailing" secondItem="hTH-UZ-m1e" secondAttribute="trailing" constant="15" id="eYs-52-Hy0"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tRa-KT-6lO" secondAttribute="trailing" constant="100" id="iRx-PR-JUu"/>
                             <constraint firstItem="9pi-hL-Stw" firstAttribute="top" secondItem="h3Y-x4-nOw" secondAttribute="top" constant="10" id="kth-ai-UYN"/>
-                            <constraint firstItem="9pi-hL-Stw" firstAttribute="leading" secondItem="h3Y-x4-nOw" secondAttribute="leading" constant="10" id="ltR-G1-bM7"/>
+                            <constraint firstItem="9pi-hL-Stw" firstAttribute="leading" secondItem="h3Y-x4-nOw" secondAttribute="leading" constant="15" id="ltR-G1-bM7"/>
+                            <constraint firstAttribute="trailing" secondItem="9pi-hL-Stw" secondAttribute="trailing" constant="15" id="vXW-sT-Dbz"/>
                         </constraints>
                     </view>
                 </subviews>

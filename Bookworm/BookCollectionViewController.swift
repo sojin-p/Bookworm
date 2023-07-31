@@ -35,12 +35,23 @@ class BookCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "책장"
+        
+        let searchImage = UIImage(systemName: "magnifyingglass")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
+        
         let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
         
         setCollectionViewLayout()
         
     }
+    
+    @objc
+    func searchBarButtonClicked() {
+        print(#function)
+    }
+    
     
     func setCollectionViewLayout() {
         
@@ -72,8 +83,8 @@ class BookCollectionViewController: UICollectionViewController {
         cell.titleLabel.text = item.mainTitle
         cell.rateLabel.text = "\(item.rate)"
         
-        cell.backView.backgroundColor = .darkGray
-        cell.bookImageView.image = UIImage(systemName: "star")
+        cell.backView.backgroundColor = .systemGray6
+        cell.bookImageView.image = UIImage(named: item.mainTitle)
         
         return cell
     }
