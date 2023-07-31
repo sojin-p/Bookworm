@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     
     @objc
     func closeBarButtonClicked() {
-        print(#function)
+        dismiss(animated: true)
     }
 
 

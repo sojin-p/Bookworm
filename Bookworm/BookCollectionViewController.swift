@@ -47,20 +47,21 @@ class BookCollectionViewController: UICollectionViewController {
         
     }
     
+    //검색 버튼 클릭 시
     @objc
     func searchBarButtonClicked() {
         let mainSB = UIStoryboard(name: "Main", bundle: nil)
         let searchVC = mainSB.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         let nav = UINavigationController(rootViewController: searchVC)
         
-        nav.modalTransitionStyle = .coverVertical
+        nav.modalTransitionStyle = .crossDissolve
         nav.modalPresentationStyle = .fullScreen
         
         present(nav, animated: true)
         
     }
     
-    
+    //3. 컬렉션 뷰 레이아웃 세팅
     func setCollectionViewLayout() {
         
         let layout = UICollectionViewFlowLayout()
@@ -77,10 +78,12 @@ class BookCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = layout
     }
     
+    //1.
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieList.movie.count
     }
     
+    //2.
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else {
             return UICollectionViewCell()
