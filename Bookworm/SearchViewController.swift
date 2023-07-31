@@ -14,6 +14,14 @@ class SearchViewController: UIViewController {
         
         title = "검색 화면"
         
+        let xMarkImage = UIImage(systemName: "xmark")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
+        
+    }
+    
+    @objc
+    func closeBarButtonClicked() {
+        print(#function)
     }
 
 
