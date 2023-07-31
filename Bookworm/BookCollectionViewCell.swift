@@ -20,10 +20,19 @@ class BookCollectionViewCell: UICollectionViewCell {
         rateLabel.text = "\(item.rate)"
         rateLabel.font = .systemFont(ofSize: 13)
         
-        backView.backgroundColor = .systemGray6
+        backView.backgroundColor = randomBackgroundColor()
         backView.layer.cornerRadius = 15
         
         bookImageView.image = UIImage(named: item.mainTitle)
+    }
+    
+    func randomBackgroundColor() -> UIColor {
+        let r = CGFloat.random(in: 0.7...1)
+        let g = CGFloat.random(in: 0.7...1)
+        let b = CGFloat.random(in: 0.7...1)
+        let color = UIColor(red: r, green: g, blue: b, alpha: 1)
+        
+        return color
     }
 
 }
