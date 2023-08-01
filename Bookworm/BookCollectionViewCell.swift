@@ -17,14 +17,29 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     func configureCell(item: Movie) {
         
-        titleLabel.configureTitleText(title: item.mainTitle, fontSize: 18)
+        titleLabel.setTitleText(item.mainTitle, size: 18)
         rateLabel.text = "\(item.rate)"
         rateLabel.font = .systemFont(ofSize: 13)
         
+        likeButton(item: item)
+        
         backView.backgroundColor = randomBackgroundColor()
-        backView.layer.cornerRadius = 15
+        backView.setCorner(15)
         
         bookImageView.image = UIImage(named: item.mainTitle)
+        
+    }
+    
+    func likeButton(item: Movie) {
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setTitle("", for: .normal)
+        likeButton.tintColor = .systemPink
+
+        if item.like {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
     
     func randomBackgroundColor() -> UIColor {

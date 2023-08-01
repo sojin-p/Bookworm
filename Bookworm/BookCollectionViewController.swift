@@ -9,22 +9,28 @@ import UIKit
 
 class BookCollectionViewController: UICollectionViewController {
     
-    var movieList = MovieInfo()
+    var movieList = MovieInfo() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "책장"
-        
-        let searchImage = UIImage(systemName: "magnifyingglass")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
-        navigationItem.rightBarButtonItem?.tintColor = .black
-        
         let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
         
+        title = "책장"
+        setSearchBarButton()
         setCollectionViewLayout()
         
+    }
+    
+    func setSearchBarButton() {
+        let searchImage = UIImage(systemName: "magnifyingglass")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
     //검색 버튼 클릭 시
@@ -58,7 +64,7 @@ class BookCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = layout
     }
     
-    //1.
+    //1. 셀 갯수
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieList.movie.count
     }
@@ -76,25 +82,14 @@ class BookCollectionViewController: UICollectionViewController {
         //Like 버튼
         cell.likeButton.tag = indexPath.item
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        cell.likeButton.setTitle("", for: .normal)
-        cell.likeButton.tintColor = .systemPink
-        
-        if movieList.movie[indexPath.item].like {
-            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        } else {
-            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
         
         return cell
     }
     
     @objc
     func likeButtonTapped(_ sender: UIButton) {
-//        print("좋아요 클릭\(sender.tag)")
         movieList.movie[sender.tag].like.toggle()
-        print(movieList.movie[sender.tag].like)
-        collectionView.reloadData()
+//        collectionView.reloadData()
     }
     
     //셀 선택 시

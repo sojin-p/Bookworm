@@ -35,7 +35,6 @@ class DetailViewController: UIViewController {
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
-    
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var detailBackView: UIView!
@@ -50,11 +49,20 @@ class DetailViewController: UIViewController {
     
     func setBasic() {
         title = contents.mainTitle
-        titleLabel.text = contents.mainTitle
-        releaseDateLabel.text = contents.subTitle
-        rateLabel.text = contents.rateString
-        overviewLabel.text = contents.overview
+        titleLabel.setTitleText(contents.mainTitle, size: 20)
+        
+        releaseDateLabel.setSubTitle(contents.subTitle, size: 13, color: .gray)
+        
+        rateLabel.setSubTitle(contents.rateString, size: 16, color: .gray)
+        
+        overviewLabel.setLongText(contents.overview, size: 14, color: .black, line: 7)
+        
         posterImageView.image = UIImage(named: contents.mainTitle)
+        posterImageView.setCorner(20)
+        
+        detailBackView.setCorner(20)
+        detailBackView.setViewShadow(w: 5, h: 5, radius: 5, opacity: 0.5)
+        
     }
     
     func setBackButton() {
