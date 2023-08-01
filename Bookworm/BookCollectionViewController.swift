@@ -104,11 +104,11 @@ class BookCollectionViewController: UICollectionViewController {
         
         let item = movieList.movie[indexPath.item]
         
-        detailVC.contents[0] = item.mainTitle
-        detailVC.contents[1] = item.releaseDate
-        detailVC.contents[2] = "\(item.runtime)"
-        detailVC.contents[3] = "\(item.rate)"
-        detailVC.contents[4] = item.overview
+        detailVC.contents.mainTitle = item.mainTitle
+        detailVC.contents.releaseDate = item.releaseDate
+        detailVC.contents.runtime = item.runtime
+        detailVC.contents.rate = item.rate
+        detailVC.contents.overview = item.overview
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

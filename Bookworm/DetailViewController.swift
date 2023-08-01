@@ -7,9 +7,30 @@
 
 import UIKit
 
+struct Contents {
+    
+    var mainTitle: String = ""
+    var releaseDate: String = ""
+    var runtime: Int = 0
+    var rate: Float = 0
+    var overview: String = ""
+    
+    var subTitle: String {
+        get {
+            return "\(releaseDate) | \(runtime)분"
+        }
+    }
+    
+    var rateString: String {
+        "\(rate)점"
+    }
+    
+}
+
+
 class DetailViewController: UIViewController {
     
-    var contents: [String] = ["mainTitle", "releaseDate", "runtime", "rate", "overview"]
+    var contents = Contents()
     
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -22,15 +43,18 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = contents[0]
-        titleLabel.text = contents[0]
-        releaseDateLabel.text = "\(contents[1]) | \(contents[2])분"
-        rateLabel.text = contents[3]
-        overviewLabel.text = contents[4]
-        posterImageView.image = UIImage(named: contents[0])
-        
+        setBasic()
         setBackButton()
 
+    }
+    
+    func setBasic() {
+        title = contents.mainTitle
+        titleLabel.text = contents.mainTitle
+        releaseDateLabel.text = contents.subTitle
+        rateLabel.text = contents.rateString
+        overviewLabel.text = contents.overview
+        posterImageView.image = UIImage(named: contents.mainTitle)
     }
     
     func setBackButton() {
