@@ -13,6 +13,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var bookImageView: UIImageView!
+    @IBOutlet var likeButton: UIButton!
     
     func configureCell(item: Movie) {
         

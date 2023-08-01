@@ -34,11 +34,19 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRa-KT-6lO">
-                                <rect key="frame" x="15" y="120.33333333333333" width="31" height="15.666666666666671"/>
+                                <rect key="frame" x="15" y="120" width="31" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLh-zF-4WL">
+                                <rect key="frame" x="1" y="41" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TLh-zF-4WL" secondAttribute="height" multiplier="1:1" id="slx-pW-jn3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -50,6 +58,8 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tRa-KT-6lO" secondAttribute="trailing" constant="100" id="iRx-PR-JUu"/>
                             <constraint firstItem="9pi-hL-Stw" firstAttribute="top" secondItem="h3Y-x4-nOw" secondAttribute="top" constant="15" id="kth-ai-UYN"/>
                             <constraint firstItem="9pi-hL-Stw" firstAttribute="leading" secondItem="h3Y-x4-nOw" secondAttribute="leading" constant="15" id="ltR-G1-bM7"/>
+                            <constraint firstItem="tRa-KT-6lO" firstAttribute="top" secondItem="TLh-zF-4WL" secondAttribute="bottom" constant="4" id="qIQ-jz-vXp"/>
+                            <constraint firstItem="TLh-zF-4WL" firstAttribute="leading" secondItem="h3Y-x4-nOw" secondAttribute="leading" constant="1" id="rzA-kp-qL6"/>
                             <constraint firstAttribute="trailing" secondItem="9pi-hL-Stw" secondAttribute="trailing" constant="15" id="vXW-sT-Dbz"/>
                         </constraints>
                     </view>
@@ -66,6 +76,7 @@
             <connections>
                 <outlet property="backView" destination="h3Y-x4-nOw" id="l44-mc-ieR"/>
                 <outlet property="bookImageView" destination="hTH-UZ-m1e" id="Ugo-J9-u1r"/>
+                <outlet property="likeButton" destination="TLh-zF-4WL" id="4nT-8o-bgs"/>
                 <outlet property="rateLabel" destination="tRa-KT-6lO" id="Z1Z-DC-Wne"/>
                 <outlet property="titleLabel" destination="9pi-hL-Stw" id="rwM-4r-RWo"/>
             </connections>

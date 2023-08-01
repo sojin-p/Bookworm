@@ -10,4 +10,5 @@ import Foundation
 struct Movie {
     var mainTitle: String
     var rate: Float
+    var like: Bool
 }
