@@ -9,24 +9,38 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var contents = ""
-    @IBOutlet var detailLabel: UILabel!
+    var contents: [String] = ["mainTitle", "releaseDate", "runtime", "rate", "overview"]
+    
+    @IBOutlet var posterImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var releaseDateLabel: UILabel!
+    
+    @IBOutlet var rateLabel: UILabel!
+    @IBOutlet var overviewLabel: UILabel!
+    @IBOutlet var detailBackView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = contents
+        title = contents[0]
+        titleLabel.text = contents[0]
+        releaseDateLabel.text = "\(contents[1]) | \(contents[2])분"
+        rateLabel.text = contents[3]
+        overviewLabel.text = contents[4]
+        posterImageView.image = UIImage(named: contents[0])
         
-        let closeButtonImage = UIImage(systemName: "chevron.left")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: closeButtonImage, target: self, action: #selector(popBarButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .black
-        
-        detailLabel.text = "상세 화면"
+        setBackButton()
 
     }
     
+    func setBackButton() {
+        let backButtonImage = UIImage(systemName: "chevron.left")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .black
+    }
+    
     @objc
-    func popBarButtonClicked() {
+    func backBarButtonClicked() {
         navigationController?.popViewController(animated: true)
     }
 
