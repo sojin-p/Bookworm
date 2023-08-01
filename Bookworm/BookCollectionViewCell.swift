@@ -17,16 +17,17 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     func configureCell(item: Movie) {
         
-        titleLabel.setTitleText(item.mainTitle, size: 18)
-        rateLabel.text = "\(item.rate)"
-        rateLabel.font = .systemFont(ofSize: 13)
+        titleLabel.setTitleText(item.mainTitle, size: 15)
+        rateLabel.setSubTitle(String(item.rate), size: 12, color: .gray)
         
         likeButton(item: item)
         
-        backView.backgroundColor = randomBackgroundColor()
-        backView.setCorner(15)
+//        backView.backgroundColor = randomBackgroundColor()
+        backView.setCorner(12)
+        backView.setViewShadow(w: 2, h: 2, radius: 2, opacity: 0.5)
         
         bookImageView.image = UIImage(named: item.mainTitle)
+        bookImageView.setCorner(12)
         
     }
     
