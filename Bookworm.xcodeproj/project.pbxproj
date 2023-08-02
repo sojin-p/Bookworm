@@ -20,6 +20,10 @@
 		239071BF2A77CD4C00C52AFB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071BE2A77CD4C00C52AFB /* Movie.swift */; };
 		239071C12A77CD7500C52AFB /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071C02A77CD7500C52AFB /* MovieInfo.swift */; };
 		239071C32A77CE0B00C52AFB /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */; };
+		239071CB2A7A41A900C52AFB /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 239071CA2A7A41A900C52AFB /* Home.storyboard */; };
+		239071CD2A7A435600C52AFB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071CC2A7A435600C52AFB /* HomeViewController.swift */; };
+		239071D02A7A478F00C52AFB /* BestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */; };
+		239071D12A7A478F00C52AFB /* BestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		239071BE2A77CD4C00C52AFB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		239071C02A77CD7500C52AFB /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
 		239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		239071CA2A7A41A900C52AFB /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		239071CC2A7A435600C52AFB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestTableViewCell.swift; sourceTree = "<group>"; };
+		239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BestTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,10 @@
 				239071B92A77B33300C52AFB /* BookCollectionViewCell.xib */,
 				239071A62A77B1F500C52AFB /* SearchViewController.swift */,
 				239071BC2A77C89F00C52AFB /* DetailViewController.swift */,
+				239071CA2A7A41A900C52AFB /* Home.storyboard */,
+				239071CC2A7A435600C52AFB /* HomeViewController.swift */,
+				239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */,
+				239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */,
 				239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */,
 				239071AB2A77B1F700C52AFB /* Assets.xcassets */,
 				239071AD2A77B1F700C52AFB /* LaunchScreen.storyboard */,
@@ -147,7 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				239071AF2A77B1F700C52AFB /* LaunchScreen.storyboard in Resources */,
+				239071CB2A7A41A900C52AFB /* Home.storyboard in Resources */,
 				239071BB2A77B33300C52AFB /* BookCollectionViewCell.xib in Resources */,
+				239071D12A7A478F00C52AFB /* BestTableViewCell.xib in Resources */,
 				239071AC2A77B1F700C52AFB /* Assets.xcassets in Resources */,
 				239071AA2A77B1F500C52AFB /* Main.storyboard in Resources */,
 			);
@@ -165,6 +179,8 @@
 				239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */,
 				239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */,
 				239071BD2A77C89F00C52AFB /* DetailViewController.swift in Sources */,
+				239071CD2A7A435600C52AFB /* HomeViewController.swift in Sources */,
+				239071D02A7A478F00C52AFB /* BestTableViewCell.swift in Sources */,
 				239071C32A77CE0B00C52AFB /* Extension+UIViewController.swift in Sources */,
 				239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */,
 				239071C12A77CD7500C52AFB /* MovieInfo.swift in Sources */,
