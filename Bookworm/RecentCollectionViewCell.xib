@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,23 +18,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="91" height="121"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDB-O9-AWH">
-                        <rect key="frame" x="5" y="5" width="81" height="111"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCP-iS-Vhd">
+                        <rect key="frame" x="5" y="17.666666666666671" width="81" height="111.00000000000001"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDB-O9-AWH">
+                        <rect key="frame" x="5" y="17.666666666666671" width="81" height="111.00000000000001"/>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="kDB-O9-AWH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="4Dp-VI-3IE"/>
-                <constraint firstAttribute="bottom" secondItem="kDB-O9-AWH" secondAttribute="bottom" constant="5" id="9oy-kV-XXY"/>
-                <constraint firstAttribute="trailing" secondItem="kDB-O9-AWH" secondAttribute="trailing" constant="5" id="Zgf-Nj-xr0"/>
-                <constraint firstItem="kDB-O9-AWH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="dYJ-sh-God"/>
+                <constraint firstItem="LCP-iS-Vhd" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="3dK-mF-1N9"/>
+                <constraint firstItem="kDB-O9-AWH" firstAttribute="centerY" secondItem="LCP-iS-Vhd" secondAttribute="centerY" id="5If-Q2-bEK"/>
+                <constraint firstItem="LCP-iS-Vhd" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.917355" id="Fvd-DF-UBC"/>
+                <constraint firstItem="LCP-iS-Vhd" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.89011" id="Jih-aX-RW1"/>
+                <constraint firstItem="kDB-O9-AWH" firstAttribute="width" secondItem="LCP-iS-Vhd" secondAttribute="width" id="UJg-xr-9Ju"/>
+                <constraint firstItem="kDB-O9-AWH" firstAttribute="centerX" secondItem="LCP-iS-Vhd" secondAttribute="centerX" id="VAs-SV-OyD"/>
+                <constraint firstItem="kDB-O9-AWH" firstAttribute="height" secondItem="LCP-iS-Vhd" secondAttribute="height" id="hjq-Yx-7XO"/>
+                <constraint firstItem="LCP-iS-Vhd" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="s1C-m1-h6a"/>
             </constraints>
             <size key="customSize" width="91" height="121"/>
             <connections>
+                <outlet property="recentBackView" destination="LCP-iS-Vhd" id="QyY-XC-PVL"/>
                 <outlet property="recentImageView" destination="kDB-O9-AWH" id="hjj-Vx-sI3"/>
             </connections>
             <point key="canvasLocation" x="74.045801526717554" y="45.422535211267608"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

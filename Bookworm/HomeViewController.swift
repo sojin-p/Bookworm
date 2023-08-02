@@ -57,6 +57,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.bestImageView.image = UIImage(named: row.mainTitle)
         cell.bestTitleLabel.text = row.mainTitle
         cell.bestSubTitleLabel.text = row.subTitle
+        cell.bestImageView.setCorner(5)
         
         return cell
     }
@@ -84,7 +85,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func recentCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 100, height: 200)
+        layout.itemSize = CGSize(width: 100, height: 150)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         layout.minimumLineSpacing = 0
         recentCollectionView.collectionViewLayout = layout
@@ -101,6 +102,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let item = list.movie[indexPath.item]
 
         cell.recentImageView.image = UIImage(named: item.mainTitle)
+        cell.recentImageView.setCorner(5)
+        cell.recentBackView.setCorner(5)
+        cell.recentBackView.setViewShadow(w: 1, h: 1, radius: 1.5, opacity: 0.5)
         
         return cell
     }

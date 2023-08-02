@@ -9,6 +9,7 @@ import UIKit
 
 class RecentCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet var recentBackView: UIView!
     @IBOutlet var recentImageView: UIImageView!
     
     override func awakeFromNib() {
