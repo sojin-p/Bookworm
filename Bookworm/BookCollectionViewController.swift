@@ -97,13 +97,7 @@ class BookCollectionViewController: UICollectionViewController {
         let mainSB = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = mainSB.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         
-        let item = movieList.movie[indexPath.item]
-        
-        detailVC.contents.mainTitle = item.mainTitle
-        detailVC.contents.releaseDate = item.releaseDate
-        detailVC.contents.runtime = item.runtime
-        detailVC.contents.rate = item.rate
-        detailVC.contents.overview = item.overview
+        detailVC.data = movieList.movie[indexPath.item]
         
         navigationController?.pushViewController(detailVC, animated: true)
     }

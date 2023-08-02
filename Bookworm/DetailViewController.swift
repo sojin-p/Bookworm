@@ -7,30 +7,9 @@
 
 import UIKit
 
-struct Contents {
-    
-    var mainTitle: String = ""
-    var releaseDate: String = ""
-    var runtime: Int = 0
-    var rate: Float = 0
-    var overview: String = ""
-    
-    var subTitle: String {
-        get {
-            return "\(releaseDate) | \(runtime)분"
-        }
-    }
-    
-    var rateString: String {
-        "\(rate)점"
-    }
-    
-}
-
-
 class DetailViewController: UIViewController {
     
-    var contents = Contents()
+    var data: Movie?
     
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -48,18 +27,21 @@ class DetailViewController: UIViewController {
     }
     
     func setBasic() {
-        title = contents.mainTitle
-        titleLabel.setTitleText(contents.mainTitle, size: 20)
         
-        releaseDateLabel.setSubTitle(contents.subTitle, size: 13, color: .gray)
+        guard let data else { return }
         
-        rateLabel.setSubTitle(contents.rateString, size: 16, color: .gray)
-        
-        overviewLabel.setLongText(contents.overview, size: 14, color: .black, line: 7)
-        
-        posterImageView.image = UIImage(named: contents.mainTitle)
+        title = data.mainTitle
+        titleLabel.setTitleText(data.mainTitle, size: 20)
+
+        releaseDateLabel.setSubTitle(data.subTitle, size: 13, color: .gray)
+
+        rateLabel.setSubTitle(data.rateString, size: 16, color: .gray)
+
+        overviewLabel.setLongText(data.overview, size: 14, color: .black, line: 7)
+
+        posterImageView.image = UIImage(named: data.mainTitle)
         posterImageView.setCorner(20)
-        
+
         detailBackView.setCorner(20)
         detailBackView.setViewShadow(w: 5, h: 5, radius: 5, opacity: 0.5)
         

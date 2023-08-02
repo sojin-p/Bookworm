@@ -14,4 +14,14 @@ struct Movie {
     var rate: Float
     var overview: String
     var like: Bool
+    
+    var subTitle: String {
+        get {
+            return "\(releaseDate) | \(runtime)분"
+        }
+    }
+    
+    var rateString: String {
+        "\(rate)점"
+    }
 }
