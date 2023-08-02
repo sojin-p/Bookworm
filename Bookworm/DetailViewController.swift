@@ -55,6 +55,8 @@ class DetailViewController: UIViewController {
     
     @objc
     func backBarButtonClicked() {
+        //...
+        dismiss(animated: true)
         navigationController?.popViewController(animated: true)
     }
 

@@ -24,6 +24,8 @@
 		239071CD2A7A435600C52AFB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071CC2A7A435600C52AFB /* HomeViewController.swift */; };
 		239071D02A7A478F00C52AFB /* BestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */; };
 		239071D12A7A478F00C52AFB /* BestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */; };
+		239071D42A7A55AD00C52AFB /* RecentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071D22A7A55AD00C52AFB /* RecentCollectionViewCell.swift */; };
+		239071D52A7A55AD00C52AFB /* RecentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239071D32A7A55AD00C52AFB /* RecentCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		239071CC2A7A435600C52AFB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestTableViewCell.swift; sourceTree = "<group>"; };
 		239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BestTableViewCell.xib; sourceTree = "<group>"; };
+		239071D22A7A55AD00C52AFB /* RecentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCollectionViewCell.swift; sourceTree = "<group>"; };
+		239071D32A7A55AD00C52AFB /* RecentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 				239071BC2A77C89F00C52AFB /* DetailViewController.swift */,
 				239071CA2A7A41A900C52AFB /* Home.storyboard */,
 				239071CC2A7A435600C52AFB /* HomeViewController.swift */,
+				239071D22A7A55AD00C52AFB /* RecentCollectionViewCell.swift */,
+				239071D32A7A55AD00C52AFB /* RecentCollectionViewCell.xib */,
 				239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */,
 				239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */,
 				239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */,
@@ -159,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				239071AF2A77B1F700C52AFB /* LaunchScreen.storyboard in Resources */,
+				239071D52A7A55AD00C52AFB /* RecentCollectionViewCell.xib in Resources */,
 				239071CB2A7A41A900C52AFB /* Home.storyboard in Resources */,
 				239071BB2A77B33300C52AFB /* BookCollectionViewCell.xib in Resources */,
 				239071D12A7A478F00C52AFB /* BestTableViewCell.xib in Resources */,
@@ -183,6 +190,7 @@
 				239071D02A7A478F00C52AFB /* BestTableViewCell.swift in Sources */,
 				239071C32A77CE0B00C52AFB /* Extension+UIViewController.swift in Sources */,
 				239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */,
+				239071D42A7A55AD00C52AFB /* RecentCollectionViewCell.swift in Sources */,
 				239071C12A77CD7500C52AFB /* MovieInfo.swift in Sources */,
 				239071B72A77B2E800C52AFB /* BookCollectionViewController.swift in Sources */,
 			);

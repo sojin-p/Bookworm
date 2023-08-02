@@ -165,11 +165,11 @@
             </objects>
             <point key="canvasLocation" x="2933.5877862595416" y="420.42253521126764"/>
         </scene>
-        <!--Item-->
+        <!--책장-->
         <scene sceneID="J0r-f5-n6K">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4o7-bz-61O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gK6-Xx-eLm"/>
+                    <tabBarItem key="tabBarItem" title="책장" image="book" catalog="system" id="gK6-Xx-eLm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="E13-9K-Ipu">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -194,6 +194,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="mg8-yd-Uzr" kind="relationship" relationship="viewControllers" id="yq3-VT-RhC"/>
                         <segue destination="4o7-bz-61O" kind="relationship" relationship="viewControllers" id="0Pk-9P-iZG"/>
                     </connections>
                 </tabBarController>
@@ -204,13 +205,16 @@
         <!--Home-->
         <scene sceneID="LSb-hR-zzP">
             <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="mg8-yd-Uzr" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Home" id="mg8-yd-Uzr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Sjs-t4-4mV"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0m-eu-0Td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="492" y="-1002"/>
+            <point key="canvasLocation" x="704" y="-890"/>
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="128" height="99"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
