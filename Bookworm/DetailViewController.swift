@@ -7,9 +7,11 @@
 
 import UIKit
 
+enum TransitionType {
+    case home, myBook
+}
+
 class DetailViewController: UIViewController {
-    
-    var data: Movie?
     
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -19,12 +21,16 @@ class DetailViewController: UIViewController {
     @IBOutlet var detailBackView: UIView!
     @IBOutlet var memoTextView: UITextView!
     
+    var data: Movie?
+    var transition: TransitionType = .home
+    
     let placeholder = "여기에 메모를 입력하세요!"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         memoTextView.delegate = self
+        
         setBasic()
         setBackButton()
 
@@ -33,6 +39,7 @@ class DetailViewController: UIViewController {
     @IBAction func backTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
     func setBasic() {
         
         memoTextView.text = placeholder
@@ -59,16 +66,24 @@ class DetailViewController: UIViewController {
     }
     
     func setBackButton() {
-        let backButtonImage = UIImage(systemName: "chevron.left")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+        switch transition {
+        case .home:
+            let backButtonImage = UIImage(systemName: "xmark")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+        case .myBook:
+            let backButtonImage = UIImage(systemName: "chevron.left")
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+        }
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     @objc
     func backBarButtonClicked() {
-        //...
-        dismiss(animated: true)
-        navigationController?.popViewController(animated: true)
+        if transition == .home {
+            dismiss(animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
 
 }

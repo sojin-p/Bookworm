@@ -67,6 +67,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailVC.transition = .home
+        
         //네비
         let nav = UINavigationController(rootViewController: detailVC)
         
@@ -113,8 +115,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        let nav = UINavigationController(rootViewController: detailVC)
         
+        detailVC.transition = .home
+        
+        let nav = UINavigationController(rootViewController: detailVC)
         nav.modalTransitionStyle = .coverVertical
         nav.modalPresentationStyle = .fullScreen
         
