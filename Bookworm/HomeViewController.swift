@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeViewController: UIViewController {
     
     let list = MovieInfo()
 
@@ -33,8 +33,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         recentCollectionView.register(cvNib, forCellWithReuseIdentifier: "RecentCollectionViewCell")
         recentCollectionViewLayout()
     }
-    
-    //MARK: - TableView
+
+}
+
+//MARK: - TableView
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -81,8 +84,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         present(nav, animated: true)
     }
-    
-    //MARK: - CollectionView
+}
+
+//MARK: - CollectionView
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func recentCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -126,6 +131,4 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         present(nav, animated: true)
     }
-
-
 }
