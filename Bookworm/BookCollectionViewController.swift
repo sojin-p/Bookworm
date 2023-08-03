@@ -7,7 +7,10 @@
 
 import UIKit
 
-class BookCollectionViewController: UICollectionViewController {
+class BookCollectionViewController: UICollectionViewController, NavigationUIProtocol {
+    
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
     var movieList = MovieInfo() {
         didSet {
@@ -18,19 +21,28 @@ class BookCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
-        
-        title = "책장"
-        setSearchBarButton()
-        setCollectionViewLayout()
+        setUI()
         
     }
     
-    func setSearchBarButton() {
+    func setUI() {
+        navTitle = "내 책장"
+        view.backgroundColor = mainBackColor
+        setBarButton()
+        setNib()
+        setCollectionViewLayout()
+    }
+    
+    func setBarButton() {
+        //searchButton
         let searchImage = UIImage(systemName: "magnifyingglass")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
         navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    
+    func setNib() {
+        let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
     }
     
     //검색 버튼 클릭 시
@@ -104,3 +116,4 @@ class BookCollectionViewController: UICollectionViewController {
     }
 
 }
+

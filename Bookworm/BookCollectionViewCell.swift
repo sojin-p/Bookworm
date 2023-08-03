@@ -43,13 +43,13 @@ class BookCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func randomBackgroundColor() -> UIColor {
-        let r = CGFloat.random(in: 0.7...1)
-        let g = CGFloat.random(in: 0.7...1)
-        let b = CGFloat.random(in: 0.7...1)
-        let color = UIColor(red: r, green: g, blue: b, alpha: 1)
-        
-        return color
-    }
+//    func randomBackgroundColor() -> UIColor {
+//        let r = CGFloat.random(in: 0.7...1)
+//        let g = CGFloat.random(in: 0.7...1)
+//        let b = CGFloat.random(in: 0.7...1)
+//        let color = UIColor(red: r, green: g, blue: b, alpha: 1)
+//        
+//        return color
+//    }
 
 }

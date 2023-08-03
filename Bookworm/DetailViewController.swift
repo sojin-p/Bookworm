@@ -11,7 +11,7 @@ enum TransitionType {
     case home, myBook
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, NavigationUIProtocol {
     
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -21,6 +21,9 @@ class DetailViewController: UIViewController {
     @IBOutlet var detailBackView: UIView!
     @IBOutlet var memoTextView: UITextView!
     
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
+    
     var data: Movie?
     var transition: TransitionType = .home
     
@@ -29,10 +32,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        memoTextView.delegate = self
-        
-        setBasic()
-        setBackButton()
+        setUI()
 
     }
     
@@ -40,8 +40,9 @@ class DetailViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func setBasic() {
+    func setUI() {
         
+        memoTextView.delegate = self
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         memoTextView.text = placeholder
@@ -50,24 +51,23 @@ class DetailViewController: UIViewController {
         
         guard let data else { return }
         
-        title = data.mainTitle
+        navTitle = data.mainTitle
+        view.backgroundColor = mainBackColor
+        
         titleLabel.setTitleText(data.mainTitle, size: 20)
-
         releaseDateLabel.setSubTitle(data.subTitle, size: 13, color: .gray)
-
         rateLabel.setSubTitle(data.rateString, size: 16, color: .gray)
-
         overviewLabel.setLongText(data.overview, size: 14, color: .black, line: 7)
-
         posterImageView.image = UIImage(named: data.mainTitle)
         posterImageView.setCorner(20)
-
         detailBackView.setCorner(20)
         detailBackView.setViewShadow(w: 5, h: 5, radius: 5, opacity: 0.5)
         
+        setBarButton()
+        
     }
     
-    func setBackButton() {
+    func setBarButton() {
         switch transition {
         case .home:
             let backButtonImage = UIImage(systemName: "xmark")

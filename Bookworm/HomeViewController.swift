@@ -7,24 +7,35 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-    
-    let list = MovieInfo()
+class HomeViewController: UIViewController, NavigationUIProtocol {
 
     @IBOutlet var bestTableView: UITableView!
     @IBOutlet var recentCollectionView: UICollectionView!
     
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
+    
+    let list = MovieInfo()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "둘러보기"
+        setUI()
         
+    }
+    
+    func setUI() {
+        navTitle = "둘러보기"
         //까먹지 말자..
         bestTableView.delegate = self
         bestTableView.dataSource = self
         recentCollectionView.delegate = self
         recentCollectionView.dataSource = self
         
+        setNib()
+    }
+    
+    func setNib() {
         let nib = UINib(nibName: "BestTableViewCell", bundle: nil)
         bestTableView.register(nib, forCellReuseIdentifier: "BestTableViewCell")
         bestTableView.rowHeight = 120

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23870E132A7BDFE200B743F0 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23870E122A7BDFE200B743F0 /* Protocol.swift */; };
 		239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A22A77B1F500C52AFB /* AppDelegate.swift */; };
 		239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A42A77B1F500C52AFB /* SceneDelegate.swift */; };
 		239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A62A77B1F500C52AFB /* SearchViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23870E122A7BDFE200B743F0 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		2390719F2A77B1F500C52AFB /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		239071A22A77B1F500C52AFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		239071A42A77B1F500C52AFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				239071CE2A7A478F00C52AFB /* BestTableViewCell.swift */,
 				239071CF2A7A478F00C52AFB /* BestTableViewCell.xib */,
 				239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */,
+				23870E122A7BDFE200B743F0 /* Protocol.swift */,
 				239071AB2A77B1F700C52AFB /* Assets.xcassets */,
 				239071AD2A77B1F700C52AFB /* LaunchScreen.storyboard */,
 				239071B02A77B1F700C52AFB /* Info.plist */,
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				239071BF2A77CD4C00C52AFB /* Movie.swift in Sources */,
+				23870E132A7BDFE200B743F0 /* Protocol.swift in Sources */,
 				239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */,
 				239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */,
 				239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */,

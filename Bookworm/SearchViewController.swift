@@ -7,20 +7,27 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, NavigationUIProtocol {
+    
+    @IBOutlet var resultLabel: UILabel!
+    
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
     let searchBar = UISearchBar()
     let movieList = MovieInfo().movie
     var searchList: [String] = []
     
-    @IBOutlet var resultLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let xMarkImage = UIImage(systemName: "xmark")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .black
+        setUI()
+        
+    }
+    
+    func setUI() {
+        navTitle = ""
+        view.backgroundColor = mainBackColor
         
         searchBar.delegate = self
         navigationItem.titleView = searchBar
@@ -29,6 +36,14 @@ class SearchViewController: UIViewController {
         
         resultLabel.text = ""
         
+        setBarButton()
+    }
+    
+    func setBarButton() {
+        //closeBarButton
+        let xMarkImage = UIImage(systemName: "xmark")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     @objc
