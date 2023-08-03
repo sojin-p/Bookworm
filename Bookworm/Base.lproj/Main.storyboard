@@ -132,14 +132,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wsN-aS-F9Q">
+                                <rect key="frame" x="30" y="600.33333333333337" width="333" height="197.66666666666663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x2n-F3-WuH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ffT-hd-eEm" firstAttribute="trailing" secondItem="jJw-fb-Xsh" secondAttribute="trailing" id="19U-G6-ago"/>
                             <constraint firstItem="x2n-F3-WuH" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="f6P-oU-Tqw" secondAttribute="trailing" constant="268.67000000000002" id="7Iv-ig-gyY"/>
                             <constraint firstItem="jJw-fb-Xsh" firstAttribute="top" secondItem="g20-Vd-Had" secondAttribute="bottom" constant="6" id="C2y-Op-KfP"/>
                             <constraint firstItem="jJw-fb-Xsh" firstAttribute="leading" secondItem="g20-Vd-Had" secondAttribute="leading" id="FpR-6X-3uw"/>
+                            <constraint firstItem="wsN-aS-F9Q" firstAttribute="trailing" secondItem="ffT-hd-eEm" secondAttribute="trailing" id="JKu-Wr-NUN"/>
+                            <constraint firstItem="wsN-aS-F9Q" firstAttribute="leading" secondItem="ffT-hd-eEm" secondAttribute="leading" id="MCA-zY-J9H"/>
                             <constraint firstItem="ffT-hd-eEm" firstAttribute="top" secondItem="Lfp-w7-k6o" secondAttribute="bottom" constant="8" id="PfI-Kk-NQk"/>
                             <constraint firstItem="ffT-hd-eEm" firstAttribute="leading" secondItem="Lfp-w7-k6o" secondAttribute="leading" id="Q41-cM-k5S"/>
                             <constraint firstItem="f6P-oU-Tqw" firstAttribute="centerY" secondItem="Lfp-w7-k6o" secondAttribute="centerY" id="QJz-MU-eWK"/>
@@ -147,16 +158,22 @@
                             <constraint firstItem="g20-Vd-Had" firstAttribute="leading" secondItem="x2n-F3-WuH" secondAttribute="leading" constant="30" id="TFI-QM-g0m"/>
                             <constraint firstItem="jJw-fb-Xsh" firstAttribute="trailing" secondItem="g20-Vd-Had" secondAttribute="trailing" id="ZkT-TM-xav"/>
                             <constraint firstItem="vR4-bb-JeV" firstAttribute="top" secondItem="x2n-F3-WuH" secondAttribute="top" constant="20" id="cpw-0m-7va"/>
+                            <constraint firstItem="wsN-aS-F9Q" firstAttribute="top" secondItem="ffT-hd-eEm" secondAttribute="bottom" constant="20" id="dbk-4g-oOQ"/>
                             <constraint firstItem="g20-Vd-Had" firstAttribute="top" secondItem="vR4-bb-JeV" secondAttribute="bottom" constant="24" id="etE-4x-1J1"/>
+                            <constraint firstItem="x2n-F3-WuH" firstAttribute="bottom" secondItem="wsN-aS-F9Q" secondAttribute="bottom" constant="20" id="ffl-dh-uYe"/>
                             <constraint firstItem="x2n-F3-WuH" firstAttribute="trailing" secondItem="g20-Vd-Had" secondAttribute="trailing" constant="30" id="ncS-jn-vZH"/>
                             <constraint firstItem="f6P-oU-Tqw" firstAttribute="leading" secondItem="Lfp-w7-k6o" secondAttribute="trailing" constant="8" id="pgb-AS-gtw"/>
                             <constraint firstItem="vR4-bb-JeV" firstAttribute="centerX" secondItem="RB6-Dm-Bhn" secondAttribute="centerX" id="sr8-2H-q3W"/>
                             <constraint firstItem="Lfp-w7-k6o" firstAttribute="top" secondItem="jJw-fb-Xsh" secondAttribute="bottom" constant="20" id="tUa-kU-DJL"/>
                             <constraint firstItem="vR4-bb-JeV" firstAttribute="height" secondItem="RB6-Dm-Bhn" secondAttribute="height" multiplier="0.350156" id="y9E-5S-3mW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="xdj-vJ-5lX" appends="YES" id="sDD-Fg-aV8"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="detailBackView" destination="vR4-bb-JeV" id="LlT-LX-eue"/>
+                        <outlet property="memoTextView" destination="wsN-aS-F9Q" id="aoF-L0-s6Y"/>
                         <outlet property="overviewLabel" destination="ffT-hd-eEm" id="dZV-At-u7j"/>
                         <outlet property="posterImageView" destination="RVX-R5-zvf" id="Pfp-rK-izE"/>
                         <outlet property="rateLabel" destination="f6P-oU-Tqw" id="YE7-lG-ax2"/>
@@ -165,6 +182,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oIJ-pB-2dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xdj-vJ-5lX">
+                    <connections>
+                        <action selector="backTapped:" destination="oTH-S9-Wdi" id="3zd-dU-21I"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2933.5877862595416" y="420.42253521126764"/>
         </scene>
@@ -219,6 +241,9 @@
     </scenes>
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

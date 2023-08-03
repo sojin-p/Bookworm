@@ -17,16 +17,27 @@ class DetailViewController: UIViewController {
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var detailBackView: UIView!
+    @IBOutlet var memoTextView: UITextView!
+    
+    let placeholder = "여기에 메모를 입력하세요!"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        memoTextView.delegate = self
         setBasic()
         setBackButton()
 
     }
     
+    @IBAction func backTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     func setBasic() {
+        
+        memoTextView.text = placeholder
+        memoTextView.textColor = .lightGray
+        memoTextView.textAlignment = .center
         
         guard let data else { return }
         
@@ -58,6 +69,27 @@ class DetailViewController: UIViewController {
         //...
         dismiss(animated: true)
         navigationController?.popViewController(animated: true)
+    }
+
+}
+
+extension DetailViewController: UITextViewDelegate {
+    
+    //편집 끝
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if memoTextView.text.isEmpty {
+            memoTextView.text = placeholder
+            memoTextView.textColor = .lightGray
+        }
+    }
+    
+    //편집 시작
+    //메모 텍스트뷰가 플레이스홀더와 같다면
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if memoTextView.text == placeholder {
+            memoTextView.text = ""
+            memoTextView.textColor = .darkGray
+        }
     }
 
 }

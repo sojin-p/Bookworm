@@ -27,6 +27,8 @@ class SearchViewController: UIViewController {
         searchBar.placeholder = "영화를 검색해 보세요"
         searchBar.showsCancelButton = true
         
+        resultLabel.text = ""
+        
     }
     
     @objc
