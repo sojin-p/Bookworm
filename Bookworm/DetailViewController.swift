@@ -42,6 +42,8 @@ class DetailViewController: UIViewController {
     
     func setBasic() {
         
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         memoTextView.text = placeholder
         memoTextView.textColor = .lightGray
         memoTextView.textAlignment = .center
@@ -108,3 +110,6 @@ extension DetailViewController: UITextViewDelegate {
     }
 
 }
+
+//제스처로 팝
+extension DetailViewController: UIGestureRecognizerDelegate { }
