@@ -34,6 +34,9 @@
                             <constraint firstItem="nzG-jb-sZb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="px6-0U-HJ3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="resultLabel" destination="nzG-jb-sZb" id="Scb-RD-W9Y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,6 +193,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xjH-ZU-i9x" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dky-TB-TVh">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -200,7 +204,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5H-bi-mO9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42" y="-684"/>
+            <point key="canvasLocation" x="121" y="4"/>
         </scene>
         <!--Home-->
         <scene sceneID="LSb-hR-zzP">
@@ -210,7 +214,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0m-eu-0Td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="-890"/>
+            <point key="canvasLocation" x="921" y="-480"/>
         </scene>
     </scenes>
     <resources>
