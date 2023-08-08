@@ -8,6 +8,21 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Kingfisher
+
+struct Book {
+    
+    var title: String
+    var authors: String
+    
+    var publisher: String
+    var imageURL: String
+    
+    var subTitle: String {
+        "\(authors) / \(publisher)"
+    }
+
+}
 
 class HomeViewController: UIViewController, NavigationUIProtocol {
 
@@ -18,6 +33,7 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
     let list = MovieInfo()
+    var bookList: [Book] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +45,47 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     }
     
     func callRequest() {
+        guard let text = "최은영".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoAK)"]
+        
+        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print("JSON: \(json)")
+                
+                for item in json["documents"].arrayValue {
+                    
+                    let title = item["title"].stringValue
+                    let publisherName = item["publisher"].stringValue
+                    
+                    //만약 작가가 2명 이상이면..?
+                    var authorsName = ""
+                    if item["authors"].count > 2 {
+                        let authors = "\(item["authors"].arrayValue)"
+                        authorsName = authors.trimmingCharacters(in: ["[","]"])
+                    } else {
+                        authorsName = item["authors"][0].stringValue
+                    }
+                    
+                    let imageURL = item["thumbnail"].stringValue
+                    if imageURL.contains("\\") {
+                        let removeSlash = "\\".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    }
+                    
+                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
+                    self.bookList.append(data)
+                    
+                }
+//                print(bookTitle, authorsName, publisherName)
+
+                self.bestTableView.reloadData()
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
         
     }
     
@@ -89,16 +146,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     //셀 갯수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.movie.count
+        return bookList.count
     }
     
     //디자인 데이터
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BestTableViewCell") as! BestTableViewCell
-        let row = list.movie[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BestTableViewCell") as? BestTableViewCell else { return UITableViewCell() }
+        let row = bookList[indexPath.item]
         
-        cell.bestImageView.image = UIImage(named: row.mainTitle)
-        cell.bestTitleLabel.text = row.mainTitle
+        let imageURL = URL(string: row.imageURL)
+        
+        cell.bestImageView.kf.setImage(with: imageURL)
+        cell.bestTitleLabel.text = row.title
         cell.bestSubTitleLabel.text = row.subTitle
         cell.bestImageView.setCorner(5)
         

@@ -34,7 +34,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JOc-iZ-7nH">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JOc-iZ-7nH">
                         <rect key="frame" x="20.000000000000004" y="8" width="49.333333333333343" height="74"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="JOc-iZ-7nH" secondAttribute="height" multiplier="3:4.5" id="Fmf-Is-JAi"/>
