@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232408AA2A82746E000A1024 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 232408A92A82746E000A1024 /* Alamofire */; };
+		232408AD2A82748E000A1024 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 232408AC2A82748E000A1024 /* SwiftyJSON */; };
+		232408AF2A8274BE000A1024 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 232408AE2A8274BE000A1024 /* .gitignore */; };
 		23870E132A7BDFE200B743F0 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23870E122A7BDFE200B743F0 /* Protocol.swift */; };
 		239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A22A77B1F500C52AFB /* AppDelegate.swift */; };
 		239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A42A77B1F500C52AFB /* SceneDelegate.swift */; };
@@ -30,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		232408AE2A8274BE000A1024 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		23870E122A7BDFE200B743F0 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		2390719F2A77B1F500C52AFB /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		239071A22A77B1F500C52AFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				232408AD2A82748E000A1024 /* SwiftyJSON in Frameworks */,
+				232408AA2A82746E000A1024 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +110,7 @@
 				23870E122A7BDFE200B743F0 /* Protocol.swift */,
 				239071AB2A77B1F700C52AFB /* Assets.xcassets */,
 				239071AD2A77B1F700C52AFB /* LaunchScreen.storyboard */,
+				232408AE2A8274BE000A1024 /* .gitignore */,
 				239071B02A77B1F700C52AFB /* Info.plist */,
 			);
 			path = Bookworm;
@@ -125,6 +132,10 @@
 			dependencies = (
 			);
 			name = Bookworm;
+			packageProductDependencies = (
+				232408A92A82746E000A1024 /* Alamofire */,
+				232408AC2A82748E000A1024 /* SwiftyJSON */,
+			);
 			productName = Bookworm;
 			productReference = 2390719F2A77B1F500C52AFB /* Bookworm.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +164,10 @@
 				Base,
 			);
 			mainGroup = 239071962A77B1F500C52AFB;
+			packageReferences = (
+				232408A82A82746E000A1024 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				232408AB2A82748E000A1024 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = 239071A02A77B1F500C52AFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				232408AF2A8274BE000A1024 /* .gitignore in Resources */,
 				239071AF2A77B1F700C52AFB /* LaunchScreen.storyboard in Resources */,
 				239071D52A7A55AD00C52AFB /* RecentCollectionViewCell.xib in Resources */,
 				239071CB2A7A41A900C52AFB /* Home.storyboard in Resources */,
@@ -422,6 +438,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		232408A82A82746E000A1024 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		232408AB2A82748E000A1024 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		232408A92A82746E000A1024 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 232408A82A82746E000A1024 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		232408AC2A82748E000A1024 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 232408AB2A82748E000A1024 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 239071972A77B1F500C52AFB /* Project object */;
 }

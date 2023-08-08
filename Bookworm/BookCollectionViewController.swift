@@ -28,35 +28,13 @@ class BookCollectionViewController: UICollectionViewController, NavigationUIProt
     func setUI() {
         navTitle = "내 책장"
         view.backgroundColor = mainBackColor
-        setBarButton()
         setNib()
         setCollectionViewLayout()
     }
-    
-    func setBarButton() {
-        //searchButton
-        let searchImage = UIImage(systemName: "magnifyingglass")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
-        navigationItem.rightBarButtonItem?.tintColor = .black
-    }
-    
+
     func setNib() {
         let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
-    }
-    
-    //검색 버튼 클릭 시
-    @objc
-    func searchBarButtonClicked() {
-        let mainSB = UIStoryboard(name: "Main", bundle: nil)
-        let searchVC = mainSB.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        let nav = UINavigationController(rootViewController: searchVC)
-        
-        nav.modalTransitionStyle = .crossDissolve
-        nav.modalPresentationStyle = .fullScreen
-        
-        present(nav, animated: true)
-        
     }
     
     //3. 컬렉션 뷰 레이아웃 세팅

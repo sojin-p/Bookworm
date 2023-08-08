@@ -89,6 +89,52 @@
             </objects>
             <point key="canvasLocation" x="1852.6717557251907" y="7.746478873239437"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="AUr-9a-47p">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="GWh-Db-rzj" customClass="SearchViewController" customModule="Bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pcW-oP-plh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DlJ-PK-H5E">
+                                <rect key="frame" x="0.0" y="79" width="393" height="739"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KQB-Aw-yPV">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vu8-V2-oHe">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QsQ-De-NiE">
+                                            <rect key="frame" x="0.0" y="0.0" width="127.99999999999997" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="i9w-ix-ZRF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DlJ-PK-H5E" firstAttribute="leading" secondItem="i9w-ix-ZRF" secondAttribute="leading" id="V8p-wQ-0Gw"/>
+                            <constraint firstItem="DlJ-PK-H5E" firstAttribute="top" secondItem="i9w-ix-ZRF" secondAttribute="top" constant="20" id="igt-nx-t5h"/>
+                            <constraint firstItem="i9w-ix-ZRF" firstAttribute="trailing" secondItem="DlJ-PK-H5E" secondAttribute="trailing" id="mDd-Am-gAI"/>
+                            <constraint firstItem="i9w-ix-ZRF" firstAttribute="bottom" secondItem="DlJ-PK-H5E" secondAttribute="bottom" id="mpg-q9-Wna"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchCollectionView" destination="DlJ-PK-H5E" id="wKj-jO-prb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OxA-df-aaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2582" y="8"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Yd-2v-dEX">
             <objects>

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class HomeViewController: UIViewController, NavigationUIProtocol {
 
@@ -21,6 +23,12 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         super.viewDidLoad()
         
         setUI()
+        setBarButton()
+        callRequest()
+        
+    }
+    
+    func callRequest() {
         
     }
     
@@ -43,6 +51,27 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         let cvNib = UINib(nibName: "RecentCollectionViewCell", bundle: nil)
         recentCollectionView.register(cvNib, forCellWithReuseIdentifier: "RecentCollectionViewCell")
         recentCollectionViewLayout()
+    }
+    
+    func setBarButton() {
+        //searchButton
+        let searchImage = UIImage(systemName: "magnifyingglass")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    
+    //검색 버튼 클릭 시
+    @objc
+    func searchBarButtonClicked() {
+        let homeSB = UIStoryboard(name: "Home", bundle: nil)
+        guard let searchVC = homeSB.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        let nav = UINavigationController(rootViewController: searchVC)
+        
+        nav.modalTransitionStyle = .crossDissolve
+        nav.modalPresentationStyle = .fullScreen
+        
+        present(nav, animated: true)
+        
     }
 
 }
