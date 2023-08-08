@@ -53,7 +53,7 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                print("JSON: \(json)")
+//                print("JSON: \(json)")
                 
                 for item in json["documents"].arrayValue {
                     
@@ -127,6 +127,8 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         nav.modalTransitionStyle = .crossDissolve
         nav.modalPresentationStyle = .fullScreen
         
+//        searchVC.bookList1 = bookList
+        
         present(nav, animated: true)
         
     }
@@ -152,7 +154,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     //디자인 데이터
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BestTableViewCell") as? BestTableViewCell else { return UITableViewCell() }
-        let row = bookList[indexPath.item]
+        let row = bookList[indexPath.row]
         
         let imageURL = URL(string: row.imageURL)
         
