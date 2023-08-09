@@ -15,26 +15,37 @@ class BookCollectionViewCell: UICollectionViewCell {
     @IBOutlet var bookImageView: UIImageView!
     @IBOutlet var likeButton: UIButton!
     
-    func configureCell(item: Movie) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
-        titleLabel.setTitleText(item.mainTitle, size: 15)
-        rateLabel.setSubTitle(String(item.rate), size: 12, color: .gray)
+        titleLabel.font = .boldSystemFont(ofSize: 14)
+        rateLabel.font = .systemFont(ofSize: 12)
+        rateLabel.textColor = .gray
         
-        likeButton(item: item)
-        
-//        backView.backgroundColor = randomBackgroundColor()
         backView.setCorner(12)
         backView.setViewShadow(w: 2, h: 2, radius: 2, opacity: 0.5)
         
-        bookImageView.image = UIImage(named: item.mainTitle)
         bookImageView.setCorner(12)
+        bookImageView.contentMode = .scaleToFill
+        
+//        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setTitle("", for: .normal)
+        likeButton.tintColor = .systemPink
+        
+    }
+    
+    func configureCell(item: Movie) {
+        
+        titleLabel.text = item.mainTitle
+        rateLabel.text = String(item.rate)
+        bookImageView.image = UIImage(named: item.mainTitle)
+        likeButton(item: item)
+        
+//        backView.backgroundColor = randomBackgroundColor()
         
     }
     
     func likeButton(item: Movie) {
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        likeButton.setTitle("", for: .normal)
-        likeButton.tintColor = .systemPink
 
         if item.like {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)

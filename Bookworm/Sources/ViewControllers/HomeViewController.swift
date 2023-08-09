@@ -10,20 +10,6 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-struct Book {
-    
-    var title: String
-    var authors: String
-    
-    var publisher: String
-    var imageURL: String
-    
-    var subTitle: String {
-        "\(authors) / \(publisher)"
-    }
-
-}
-
 class HomeViewController: UIViewController, NavigationUIProtocol {
 
     @IBOutlet var bestTableView: UITableView!

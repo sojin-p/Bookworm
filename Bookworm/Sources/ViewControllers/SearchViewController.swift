@@ -33,6 +33,13 @@ class SearchViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @objc func likeButtonClicked(_ sender: UIButton) {
+//        print(sender.tag, "잘오나")
+        bookList[sender.tag].like.toggle()
+        print(bookList[sender.tag].like,"잘바뀌나")
+        searchCollectionView.reloadData()
+    }
+    
     func callRequest(query: String, page: Int) {
         
         guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
@@ -132,16 +139,21 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
         let item = bookList[indexPath.item]
-        
         let imageURL = URL(string: item.imageURL)
 
         cell.bookImageView.kf.setImage(with: imageURL)
-        cell.bookImageView.backgroundColor = .cyan
         cell.titleLabel.text = item.title
         cell.rateLabel.text = item.subTitle
-        cell.bookImageView.setCorner(12)
-        cell.backView.setCorner(12)
-        cell.backView.setViewShadow(w: 2, h: 2, radius: 2, opacity: 0.5)
+        
+        cell.likeButton.tag = indexPath.item
+        cell.likeButton.addTarget(self, action: #selector(likeButtonClicked), for: .touchUpInside)
+        
+        if bookList[indexPath.item].like {
+            cell.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            cell.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        
         
         return cell
     }
@@ -181,7 +193,7 @@ extension SearchViewController: NavigationUIProtocol {
         let spacing: CGFloat = 8
         let width = UIScreen.main.bounds.width - (spacing * 4)
 
-        layout.itemSize = CGSize(width: width / 3, height: width / 1.4)
+        layout.itemSize = CGSize(width: width / 3, height: width / 1.5)
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
         
         layout.minimumLineSpacing = spacing
