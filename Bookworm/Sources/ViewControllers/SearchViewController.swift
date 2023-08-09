@@ -17,12 +17,11 @@ class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
     
     var bookList: [Book] = []
+    var page = 1
+    var isEnd = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchCollectionView.delegate = self
-        searchCollectionView.dataSource = self
         
         setUI()
         setNib()
@@ -34,10 +33,10 @@ class SearchViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func callRequest(query: String) {
+    func callRequest(query: String, page: Int) {
         
         guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=18&page=\(page)"
         let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoAK)"]
         
         AF.request(url, method: .get, headers: header).validate().responseJSON { response in
@@ -49,6 +48,8 @@ class SearchViewController: UIViewController {
                 let statusCode = response.response?.statusCode ?? 500
                 
                 if statusCode == 200 {
+                    
+                    self.isEnd = json["meta"]["is_end"].boolValue
                     
                     for item in json["documents"].arrayValue {
                         
@@ -87,12 +88,37 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        page = 1 //검색 누르면 다시 첫 페이지
         bookList.removeAll()
         
         guard let query = searchBar.text else { return }
-        callRequest(query: query)
+        callRequest(query: query, page: page)
+        
     }
     
+}
+
+extension SearchViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let contentHeight = scrollView.contentSize.height
+        let contentOffsetY = scrollView.contentOffset.y
+        let bottomHeight = contentHeight - contentOffsetY
+        let collectionViewHeight = searchCollectionView.bounds.height
+        
+        if bottomHeight < collectionViewHeight + 100 && page < 30 && !isEnd {
+            print("너무 계속 호출되는데..")
+//            page += 1
+//            callRequest(query: searchBar.text!, page: page)
+        }
+//
+//        print(contentHeight, "스크롤뷰 총 높이")
+//        print(contentOffsetY, "와이포인트~~~~")
+//        print(collectionViewHeight, "컬렉션뷰 높이")
+
+    }
+
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -120,6 +146,34 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("이건되나")
+    }
+    
+}
+
+extension SearchViewController: NavigationUIProtocol {
+    
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
+    
+    func setUI() {
+        
+        view.backgroundColor = mainBackColor
+        
+        navigationItem.titleView = searchBar
+        
+        searchCollectionView.delegate = self
+        searchCollectionView.dataSource = self
+        searchCollectionView.keyboardDismissMode = .onDrag
+        
+        searchBar.delegate = self
+        searchBar.placeholder = "책 이름, 작가를 검색해 보세요"
+        searchBar.showsCancelButton = true
+        
+        setBarButton()
+    }
+    
     func setCollectionViewLayout() {
         
         let layout = UICollectionViewFlowLayout()
@@ -134,30 +188,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         layout.minimumInteritemSpacing = spacing
         
         searchCollectionView.collectionViewLayout = layout
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("이건되나")
-    }
-    
-}
-
-extension SearchViewController: NavigationUIProtocol {
-    
-    var mainBackColor: UIColor { get { return .systemBackground } }
-    var navTitle: String { get { return "타이틀" } set { title = newValue } }
-    
-    func setUI() {
-        navTitle = ""
-        view.backgroundColor = mainBackColor
-        
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
-        searchBar.placeholder = "영화를 검색해 보세요"
-        searchBar.showsCancelButton = true
-        
-        
-        setBarButton()
     }
     
     func setNib() {
