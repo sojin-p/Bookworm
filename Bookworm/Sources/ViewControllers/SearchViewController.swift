@@ -10,17 +10,13 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 
-class SearchViewController: UIViewController, NavigationUIProtocol {
+class SearchViewController: UIViewController {
     
     @IBOutlet var searchCollectionView: UICollectionView!
-    
-    var mainBackColor: UIColor { get { return .systemBackground } }
-    var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
     let searchBar = UISearchBar()
     
     var bookList: [Book] = []
-    var searchList: [Book] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +24,19 @@ class SearchViewController: UIViewController, NavigationUIProtocol {
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
         
-        callRequest()
-        
         setUI()
         setNib()
         setCollectionViewLayout()
         
     }
     
-    func callRequest() {
-        guard let text = "최은영".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+    @objc func closeBarButtonClicked() {
+        dismiss(animated: true)
+    }
+    
+    func callRequest(query: String) {
+        
+        guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
         let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoAK)"]
         
@@ -47,29 +46,32 @@ class SearchViewController: UIViewController, NavigationUIProtocol {
                 let json = JSON(value)
 //                print("JSON: \(json)")
                 
-                for item in json["documents"].arrayValue {
+                let statusCode = response.response?.statusCode ?? 500
+                
+                if statusCode == 200 {
                     
-                    let title = item["title"].stringValue
-                    let publisherName = item["publisher"].stringValue
-                    
-                    var authorsName = ""
-                    if item["authors"].count > 2 {
-                        let authors = "\(item["authors"].arrayValue)"
-                        authorsName = authors.trimmingCharacters(in: ["[","]"])
-                    } else {
-                        authorsName = item["authors"][0].stringValue
+                    for item in json["documents"].arrayValue {
+                        
+                        let title = item["title"].stringValue
+                        let publisherName = item["publisher"].stringValue
+                        let imageURL = item["thumbnail"].stringValue
+                        
+                        var authorsName = item["authors"][0].stringValue
+                        
+                        if item["authors"].count > 2 {
+                            let authors = "\(item["authors"].arrayValue)"
+                            authorsName = authors.trimmingCharacters(in: ["[","]"])
+                        }
+                        
+                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
+                        
+                        self.bookList.append(data)
+                        
                     }
                     
-                    let imageURL = item["thumbnail"].stringValue
-                    if imageURL.contains("\\") {
-                        let removeSlash = "\\".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                    }
-                    
-                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
-                    self.bookList.append(data)
-                    
+                } else {
+                    print("나중에 코드마다 대응하기")
                 }
-//                print(bookTitle, authorsName, publisherName)
 
                 self.searchCollectionView.reloadData()
                 
@@ -79,80 +81,31 @@ class SearchViewController: UIViewController, NavigationUIProtocol {
         }
         
     }
-    
-    
-    func setNib() {
-        let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
-    }
-    
-    func setUI() {
-        navTitle = ""
-        view.backgroundColor = mainBackColor
-        
-        searchBar.delegate = self
-        navigationItem.titleView = searchBar
-        searchBar.placeholder = "영화를 검색해 보세요"
-        searchBar.showsCancelButton = true
-        
-        
-        setBarButton()
-    }
-    
-    func setBarButton() {
-        //closeBarButton
-        let xMarkImage = UIImage(systemName: "xmark")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
-        navigationItem.leftBarButtonItem?.tintColor = .black
-    }
-    
-    @objc
-    func closeBarButtonClicked() {
-        dismiss(animated: true)
-    }
-    
-    func searchQuery(text: String) {
-        print("eehlsekalsdnm")
-        searchList.removeAll()
-    
-        for item in bookList {
-            if item.title.contains(text) {
-                searchList.append(item)
-            }
-        }
-        searchCollectionView.reloadData()
-        
-    }
 
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
-        searchQuery(text: text)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        bookList.removeAll()
+        
+        guard let query = searchBar.text else { return }
+        callRequest(query: query)
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchList.removeAll()
-        guard let text = searchBar.text else { return }
-        searchQuery(text: text)
-        
-    }
 }
-
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searchList.count
+        return bookList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let item = searchList[indexPath.item]
+        let item = bookList[indexPath.item]
         
         let imageURL = URL(string: item.imageURL)
 
@@ -185,6 +138,38 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("이건되나")
+    }
+    
+}
+
+extension SearchViewController: NavigationUIProtocol {
+    
+    var mainBackColor: UIColor { get { return .systemBackground } }
+    var navTitle: String { get { return "타이틀" } set { title = newValue } }
+    
+    func setUI() {
+        navTitle = ""
+        view.backgroundColor = mainBackColor
+        
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        searchBar.placeholder = "영화를 검색해 보세요"
+        searchBar.showsCancelButton = true
+        
+        
+        setBarButton()
+    }
+    
+    func setNib() {
+        let nib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
+        searchCollectionView.register(nib, forCellWithReuseIdentifier: "BookCollectionViewCell")
+    }
+    
+    func setBarButton() {
+        //closeBarButton
+        let xMarkImage = UIImage(systemName: "xmark")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: xMarkImage, style: .plain, target: self, action: #selector(closeBarButtonClicked))
+        navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
 }

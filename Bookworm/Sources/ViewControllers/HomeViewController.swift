@@ -70,9 +70,6 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
                     }
                     
                     let imageURL = item["thumbnail"].stringValue
-                    if imageURL.contains("\\") {
-                        let removeSlash = "\\".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                    }
                     
                     let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
                     self.bookList.append(data)
