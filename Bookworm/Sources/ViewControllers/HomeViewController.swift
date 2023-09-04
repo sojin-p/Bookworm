@@ -24,19 +24,29 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     
     var tasks: Results<BookTable>!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        recentCollectionView.reloadData()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        readTasks()
+        setUI()
+        setBarButton()
+        callRequest()
         
+    }
+    
+    func readTasks() {
         let realm = try! Realm()
         let tasks = realm.objects(BookTable.self)
 
         self.tasks = tasks
         print(tasks, "불러오기")
-        
-        setUI()
-        setBarButton()
-        callRequest()
-        
     }
     
     func callRequest() {
@@ -65,8 +75,9 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
                     }
                     
                     let imageURL = item["thumbnail"].stringValue
+                    let price = item["price"].intValue
                     
-                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
+                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
                     self.bookList.append(data)
                     
                 }
@@ -193,15 +204,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     //셀 갯수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.movie.count
+        return tasks.count
     }
     
     //디자인 데이터
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentCollectionViewCell", for: indexPath) as! RecentCollectionViewCell
-        let item = list.movie[indexPath.item]
-
-        cell.recentImageView.image = UIImage(named: item.mainTitle)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentCollectionViewCell", for: indexPath) as? RecentCollectionViewCell else { return UICollectionViewCell() }
+        
+        let data = tasks[indexPath.item]
+        let imageURL = URL(string: data.thumbURL ?? "")
+        
+        cell.recentImageView.kf.setImage(with: imageURL)
+        
         cell.recentImageView.setCorner(5)
         cell.recentBackView.setCorner(5)
         cell.recentBackView.setViewShadow(w: 1, h: 1, radius: 1.5, opacity: 0.5)

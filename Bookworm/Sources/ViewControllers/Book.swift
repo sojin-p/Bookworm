@@ -13,6 +13,7 @@ struct Book {
     let authors: String
     let publisher: String
     let imageURL: String
+    let price: Int
     var like: Bool = false
     
     var subTitle: String {

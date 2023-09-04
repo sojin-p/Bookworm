@@ -72,7 +72,9 @@ class SearchViewController: UIViewController {
                             authorsName = authors.trimmingCharacters(in: ["[","]"])
                         }
                         
-                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL)
+                        let price = item["price"].intValue
+                        
+                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
                         
                         self.bookList.append(data)
                         
@@ -89,6 +91,18 @@ class SearchViewController: UIViewController {
             }
         }
         
+    }
+    
+    func createTasks(item: Book) {
+        
+        let realm = try! Realm()
+        
+        let task = BookTable(author: item.authors, publisher: item.publisher, title: item.title, price: item.price, thumbURL: item.imageURL)
+        
+        try! realm.write {
+            realm.add(task)
+            print("Realm Add Succeed")
+        }
     }
 
 }
@@ -162,14 +176,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.item) 클릭")
         
-        let realm = try! Realm()
+        let item = bookList[indexPath.item]
         
-        let task = BookTable(author: "저자 테스트", publisher: "출판사", title: "책이름 테스트", price: 10000)
-        
-        try! realm.write {
-            realm.add(task)
-            print("Realm Add Succeed")
-        }
+        createTasks(item: item)
     }
     
 }
