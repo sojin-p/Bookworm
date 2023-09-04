@@ -56,7 +56,7 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     
     func readTasks() {
         let realm = try! Realm()
-        let tasks = realm.objects(BookTable.self)
+        let tasks = realm.objects(BookTable.self).sorted(byKeyPath: "_id", ascending: false)
 
         self.tasks = tasks
         print(tasks, "불러오기")
