@@ -17,6 +17,7 @@
 		2387E7DD2AA5FFD40019E4F9 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2387E7DC2AA5FFD40019E4F9 /* Realm */; };
 		2387E7DF2AA5FFD40019E4F9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2387E7DE2AA5FFD40019E4F9 /* RealmSwift */; };
 		2387E7E12AA600040019E4F9 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E02AA600040019E4F9 /* RealmModel.swift */; };
+		2387E7E62AA61B7A0019E4F9 /* KakaoBookAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */; };
 		239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A22A77B1F500C52AFB /* AppDelegate.swift */; };
 		239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A42A77B1F500C52AFB /* SceneDelegate.swift */; };
 		239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A62A77B1F500C52AFB /* SearchViewController.swift */; };
@@ -44,6 +45,7 @@
 		232408BE2A83BFDA000A1024 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Book.swift; path = Bookworm/Sources/ViewControllers/Book.swift; sourceTree = SOURCE_ROOT; };
 		23870E122A7BDFE200B743F0 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		2387E7E02AA600040019E4F9 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBookAPIManager.swift; sourceTree = "<group>"; };
 		2390719F2A77B1F500C52AFB /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		239071A22A77B1F500C52AFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		239071A42A77B1F500C52AFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				232408B02A82757C000A1024 /* APIKey.swift */,
 				232408AE2A8274BE000A1024 /* .gitignore */,
+				2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */,
 				239071D42A7A55AD00C52AFB /* RecentCollectionViewCell.swift in Sources */,
 				2387E7E12AA600040019E4F9 /* RealmModel.swift in Sources */,
+				2387E7E62AA61B7A0019E4F9 /* KakaoBookAPIManager.swift in Sources */,
 				239071C12A77CD7500C52AFB /* MovieInfo.swift in Sources */,
 				239071B72A77B2E800C52AFB /* BookCollectionViewController.swift in Sources */,
 			);

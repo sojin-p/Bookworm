@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import Kingfisher
 import RealmSwift
 
@@ -43,52 +41,10 @@ class SearchViewController: UIViewController {
     
     func callRequest(query: String, page: Int) {
         
-        guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=18&page=\(page)"
-        let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoAK)"]
-        
-        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-//                print("JSON: \(json)")
-                
-                let statusCode = response.response?.statusCode ?? 500
-                
-                if statusCode == 200 {
-                    
-                    self.isEnd = json["meta"]["is_end"].boolValue
-                    
-                    for item in json["documents"].arrayValue {
-                        
-                        let title = item["title"].stringValue
-                        let publisherName = item["publisher"].stringValue
-                        let imageURL = item["thumbnail"].stringValue
-                        
-                        var authorsName = item["authors"][0].stringValue
-                        
-                        if item["authors"].count > 2 {
-                            let authors = "\(item["authors"].arrayValue)"
-                            authorsName = authors.trimmingCharacters(in: ["[","]"])
-                        }
-                        
-                        let price = item["price"].intValue
-                        
-                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
-                        
-                        self.bookList.append(data)
-                        
-                    }
-                    
-                } else {
-                    print("나중에 코드마다 대응하기")
-                }
-
-                self.searchCollectionView.reloadData()
-                
-            case .failure(let error):
-                print(error)
-            }
+        KakaoBookAPIManager.shared.callRequest(query: query, page: page) { data, isEnd in
+            self.bookList.append(data)
+            self.isEnd = isEnd
+            self.searchCollectionView.reloadData()
         }
         
     }

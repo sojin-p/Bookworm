@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import Kingfisher
 import RealmSwift
 
@@ -41,88 +39,8 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         
     }
     
-    func readTasks() {
-        let realm = try! Realm()
-        let tasks = realm.objects(BookTable.self)
-
-        self.tasks = tasks
-        print(tasks, "불러오기")
-    }
-    
-    func callRequest() {
-        guard let text = "최은영".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
-        let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoAK)"]
-        
-        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                for item in json["documents"].arrayValue {
-                    
-                    let title = item["title"].stringValue
-                    let publisherName = item["publisher"].stringValue
-                    
-                    //만약 작가가 2명 이상이면..?
-                    var authorsName = ""
-                    if item["authors"].count > 2 {
-                        let authors = "\(item["authors"].arrayValue)"
-                        authorsName = authors.trimmingCharacters(in: ["[","]"])
-                    } else {
-                        authorsName = item["authors"][0].stringValue
-                    }
-                    
-                    let imageURL = item["thumbnail"].stringValue
-                    let price = item["price"].intValue
-                    
-                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
-                    self.bookList.append(data)
-                    
-                }
-//                print(bookTitle, authorsName, publisherName)
-
-                self.bestTableView.reloadData()
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-    
-    func setUI() {
-        navTitle = "둘러보기"
-        //까먹지 말자..
-        bestTableView.delegate = self
-        bestTableView.dataSource = self
-        recentCollectionView.delegate = self
-        recentCollectionView.dataSource = self
-        
-        setNib()
-    }
-    
-    func setNib() {
-        let nib = UINib(nibName: "BestTableViewCell", bundle: nil)
-        bestTableView.register(nib, forCellReuseIdentifier: "BestTableViewCell")
-        bestTableView.rowHeight = 120
-        
-        let cvNib = UINib(nibName: "RecentCollectionViewCell", bundle: nil)
-        recentCollectionView.register(cvNib, forCellWithReuseIdentifier: "RecentCollectionViewCell")
-        recentCollectionViewLayout()
-    }
-    
-    func setBarButton() {
-        //searchButton
-        let searchImage = UIImage(systemName: "magnifyingglass")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
-        navigationItem.rightBarButtonItem?.tintColor = .black
-    }
-    
     //검색 버튼 클릭 시
-    @objc
-    func searchBarButtonClicked() {
+    @objc func searchBarButtonClicked() {
         let homeSB = UIStoryboard(name: "Home", bundle: nil)
         guard let searchVC = homeSB.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         let nav = UINavigationController(rootViewController: searchVC)
@@ -133,6 +51,23 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
 //        searchVC.bookList1 = bookList
         
         present(nav, animated: true)
+        
+    }
+    
+    func readTasks() {
+        let realm = try! Realm()
+        let tasks = realm.objects(BookTable.self)
+
+        self.tasks = tasks
+        print(tasks, "불러오기")
+    }
+    
+    func callRequest() {
+        
+        KakaoBookAPIManager.shared.callMainRequest { data in
+            self.bookList.append(data)
+            self.bestTableView.reloadData()
+        }
         
     }
 
@@ -237,5 +172,36 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         detailVC.data = list.movie[indexPath.row]
         
         present(nav, animated: true)
+    }
+}
+
+extension HomeViewController {
+    
+    func setUI() {
+        navTitle = "둘러보기"
+        //까먹지 말자..
+        bestTableView.delegate = self
+        bestTableView.dataSource = self
+        recentCollectionView.delegate = self
+        recentCollectionView.dataSource = self
+        
+        setNib()
+    }
+    
+    func setNib() {
+        let nib = UINib(nibName: "BestTableViewCell", bundle: nil)
+        bestTableView.register(nib, forCellReuseIdentifier: "BestTableViewCell")
+        bestTableView.rowHeight = 120
+        
+        let cvNib = UINib(nibName: "RecentCollectionViewCell", bundle: nil)
+        recentCollectionView.register(cvNib, forCellWithReuseIdentifier: "RecentCollectionViewCell")
+        recentCollectionViewLayout()
+    }
+    
+    func setBarButton() {
+        //searchButton
+        let searchImage = UIImage(systemName: "magnifyingglass")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchBarButtonClicked))
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
 }
