@@ -40,8 +40,9 @@ class KakaoBookAPIManager {
                     
                     let imageURL = item["thumbnail"].stringValue
                     let price = item["price"].intValue
+                    let overview = item["contents"].stringValue
                     
-                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
+                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview)
                     
                     completionHandler(data)
                     
@@ -87,8 +88,9 @@ class KakaoBookAPIManager {
                         }
                         
                         let price = item["price"].intValue
+                        let overview = item["contents"].stringValue
                         
-                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price)
+                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview)
                         
                         completionHandler(data, isEnd)
                         

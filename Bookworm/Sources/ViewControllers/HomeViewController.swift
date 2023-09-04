@@ -117,7 +117,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         nav.modalTransitionStyle = .coverVertical
         nav.modalPresentationStyle = .fullScreen
         
-        detailVC.data = list.movie[indexPath.row]
+        detailVC.data = tasks[indexPath.item]
         
         tableView.reloadRows(at: [indexPath], with: .none)
         
@@ -161,7 +161,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     //셀 선택
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        guard let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
         detailVC.transition = .home
         
@@ -169,7 +169,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         nav.modalTransitionStyle = .coverVertical
         nav.modalPresentationStyle = .fullScreen
         
-        detailVC.data = list.movie[indexPath.row]
+        detailVC.data = tasks[indexPath.item]
         
         present(nav, animated: true)
     }

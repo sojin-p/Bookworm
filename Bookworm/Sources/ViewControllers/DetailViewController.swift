@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RealmSwift
+import Kingfisher
 
 enum TransitionType {
     case home, myBook
@@ -24,7 +26,7 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     var mainBackColor: UIColor { get { return .systemBackground } }
     var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
-    var data: Movie?
+    var data: BookTable?
     var transition: TransitionType = .home
     
     let placeholder = "여기에 메모를 입력하세요!"
@@ -50,15 +52,19 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
         memoTextView.textAlignment = .center
         
         guard let data else { return }
-        
-        navTitle = data.mainTitle
+//        navTitle = data.mainTitle
         view.backgroundColor = mainBackColor
-        
-        titleLabel.setTitleText(data.mainTitle, size: 20)
-        releaseDateLabel.setSubTitle(data.subTitle, size: 13, color: .gray)
-        rateLabel.setSubTitle(data.rateString, size: 16, color: .gray)
+        navTitle = data.title
+        titleLabel.setTitleText(data.title, size: 20)
+        releaseDateLabel.text = "\(data.author) / \(data.publisher)"
+        releaseDateLabel.font = .systemFont(ofSize: 13)
+        releaseDateLabel.textColor = .gray
+        rateLabel.text = "\(data.price)원"
         overviewLabel.setLongText(data.overview, size: 14, color: .black, line: 7)
-        posterImageView.image = UIImage(named: data.mainTitle)
+        guard let thumb = data.thumbURL else { return }
+        let url = URL(string: thumb)
+        posterImageView.kf.setImage(with: url)
+        
         posterImageView.setCorner(20)
         detailBackView.setCorner(20)
         detailBackView.setViewShadow(w: 5, h: 5, radius: 5, opacity: 0.5)

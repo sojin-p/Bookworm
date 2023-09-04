@@ -88,7 +88,7 @@ class BookCollectionViewController: UICollectionViewController, NavigationUIProt
         let detailVC = mainSB.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         
         detailVC.transition = .myBook
-        detailVC.data = movieList.movie[indexPath.item]
+//        detailVC.data = movieList.movie[indexPath.item]
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
