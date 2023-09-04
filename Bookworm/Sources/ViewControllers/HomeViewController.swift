@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import RealmSwift
 
 class HomeViewController: UIViewController, NavigationUIProtocol {
 
@@ -21,8 +22,16 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     let list = MovieInfo()
     var bookList: [Book] = []
     
+    var tasks: Results<BookTable>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let realm = try! Realm()
+        let tasks = realm.objects(BookTable.self)
+
+        self.tasks = tasks
+        print(tasks, "불러오기")
         
         setUI()
         setBarButton()
@@ -39,7 +48,7 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-//                print("JSON: \(json)")
+                print("JSON: \(json)")
                 
                 for item in json["documents"].arrayValue {
                     

@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import RealmSwift
 
 class SearchViewController: UIViewController {
     
@@ -159,7 +160,16 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("이건되나")
+        print("\(indexPath.item) 클릭")
+        
+        let realm = try! Realm()
+        
+        let task = BookTable(author: "저자 테스트", publisher: "출판사", title: "책이름 테스트", price: 10000)
+        
+        try! realm.write {
+            realm.add(task)
+            print("Realm Add Succeed")
+        }
     }
     
 }
