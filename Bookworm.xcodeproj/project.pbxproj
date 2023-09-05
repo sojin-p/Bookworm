@@ -18,6 +18,7 @@
 		2387E7DF2AA5FFD40019E4F9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2387E7DE2AA5FFD40019E4F9 /* RealmSwift */; };
 		2387E7E12AA600040019E4F9 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E02AA600040019E4F9 /* RealmModel.swift */; };
 		2387E7E62AA61B7A0019E4F9 /* KakaoBookAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */; };
+		2387E7ED2AA727010019E4F9 /* Extension+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */; };
 		239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A22A77B1F500C52AFB /* AppDelegate.swift */; };
 		239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A42A77B1F500C52AFB /* SceneDelegate.swift */; };
 		239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A62A77B1F500C52AFB /* SearchViewController.swift */; };
@@ -46,6 +47,7 @@
 		23870E122A7BDFE200B743F0 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		2387E7E02AA600040019E4F9 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBookAPIManager.swift; sourceTree = "<group>"; };
+		2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FileManager.swift"; sourceTree = "<group>"; };
 		2390719F2A77B1F500C52AFB /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		239071A22A77B1F500C52AFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		239071A42A77B1F500C52AFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,8 +105,7 @@
 				232408B52A82765D000A1024 /* ViewControllers */,
 				232408B62A827693000A1024 /* Cells */,
 				232408B72A8276BD000A1024 /* Models */,
-				239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */,
-				23870E122A7BDFE200B743F0 /* Protocol.swift */,
+				2387E7EB2AA716F70019E4F9 /* Extension */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -164,6 +165,15 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		2387E7EB2AA716F70019E4F9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				239071C22A77CE0B00C52AFB /* Extension+UIViewController.swift */,
+				2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		239071962A77B1F500C52AFB = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +195,7 @@
 			children = (
 				232408B22A8275C1000A1024 /* Resources */,
 				232408B32A8275F3000A1024 /* Sources */,
+				23870E122A7BDFE200B743F0 /* Protocol.swift */,
 				239071B02A77B1F700C52AFB /* Info.plist */,
 			);
 			path = Bookworm;
@@ -288,6 +299,7 @@
 				239071CD2A7A435600C52AFB /* HomeViewController.swift in Sources */,
 				239071D02A7A478F00C52AFB /* BestTableViewCell.swift in Sources */,
 				232408BF2A83BFDA000A1024 /* Book.swift in Sources */,
+				2387E7ED2AA727010019E4F9 /* Extension+FileManager.swift in Sources */,
 				232408B12A82757C000A1024 /* APIKey.swift in Sources */,
 				239071C32A77CE0B00C52AFB /* Extension+UIViewController.swift in Sources */,
 				239071BA2A77B33300C52AFB /* BookCollectionViewCell.swift in Sources */,

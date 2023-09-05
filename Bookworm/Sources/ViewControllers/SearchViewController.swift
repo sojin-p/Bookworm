@@ -18,6 +18,7 @@ class SearchViewController: UIViewController {
     var bookList: [Book] = []
     var page = 1
     var isEnd = false
+    var bookImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,10 @@ class SearchViewController: UIViewController {
             realm.add(task)
             print("Realm Add Succeed")
         }
+        
+        guard let bookImage else { return }
+        saveImageToDocument(fileName: "book_\(task._id).jpg", image: bookImage)
+        
     }
 
 }
@@ -134,7 +139,17 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let item = bookList[indexPath.item]
         
+        DispatchQueue.global().async {
+            if let url = URL(string: item.imageURL), let data = try? Data(contentsOf: url ) {
+                
+                DispatchQueue.main.async {
+                    self.bookImage = UIImage(data: data)
+                }
+            }
+        }
+        
         createTasks(item: item)
+        
     }
     
 }

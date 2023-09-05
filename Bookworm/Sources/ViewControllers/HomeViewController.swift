@@ -36,7 +36,6 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         setUI()
         setBarButton()
         callRequest()
-        
     }
     
     //검색 버튼 클릭 시
@@ -59,7 +58,8 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         let tasks = realm.objects(BookTable.self).sorted(byKeyPath: "_id", ascending: false)
 
         self.tasks = tasks
-        print(tasks, "불러오기")
+//        print(tasks, "불러오기")
+        print(realm.configuration.fileURL, "경로")
     }
     
     func callRequest() {
