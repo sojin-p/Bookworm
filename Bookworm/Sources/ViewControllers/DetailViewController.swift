@@ -28,6 +28,7 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     
     var data: BookTable?
     var transition: TransitionType = .home
+    let realm = try! Realm()
     
     let placeholder = "여기에 메모를 입력하세요!"
     
@@ -41,6 +42,92 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     @IBAction func backTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    
+    @objc func deleteButtonClicked() {
+        showAlert(title: "최근 본 작품에서 삭제됩니다.", message: nil)
+    }
+    
+    @objc func saveButtonClicked() {
+        
+        guard let data else { return }
+        
+        guard let text = memoTextView.text else { return }
+        let item = BookTable(value: ["_id": data._id, "author": data.author, "publisher": data.publisher, "title": data.title, "price": data.price, "thumbURL": data.thumbURL, "overview": data.overview, "memo": text])
+
+        do {
+            try realm.write {
+                realm.add(item, update: .modified)
+            }
+        } catch {
+            print(error)
+        }
+
+        dismiss(animated: true)
+        
+    }
+    
+    @objc func backBarButtonClicked() {
+        if transition == .home {
+            dismiss(animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func showAlert(title: String, message: String?) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let button = UIAlertAction(title: "삭제", style: .destructive) { action in
+            
+            guard let data = self.data else { return }
+            
+            self.removeImageFromDocument(fileName: "book_\(data._id).jpg")
+            
+            do {
+                try self.realm.write {
+                    self.realm.delete(data)
+                }
+            } catch {
+                print(error)
+            }
+            
+            self.dismiss(animated: true)
+            
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(button)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true)
+        
+    }
+
+}
+
+extension DetailViewController: UITextViewDelegate {
+    
+    //편집 끝
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if memoTextView.text.isEmpty {
+            memoTextView.text = placeholder
+            memoTextView.textColor = .lightGray
+        }
+    }
+    
+    //편집 시작
+    //메모 텍스트뷰가 플레이스홀더와 같다면
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if memoTextView.text == placeholder {
+            memoTextView.text = ""
+            memoTextView.textColor = .darkGray
+        }
+    }
+
+}
+
+//제스처로 팝
+extension DetailViewController: UIGestureRecognizerDelegate {
     
     func setUI() {
         guard let data else { return }
@@ -89,62 +176,11 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        let deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: #selector(deleteButtonClicked))
+        deleteButton.tintColor = .red
+        navigationItem.rightBarButtonItems = [saveButton, deleteButton]
         
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
-    
-    @objc func saveButtonClicked() {
-        
-        guard let data else { return }
-
-        let realm = try! Realm()
-        
-        guard let text = memoTextView.text else { return }
-        let item = BookTable(value: ["_id": data._id, "author": data.author, "publisher": data.publisher, "title": data.title, "price": data.price, "thumbURL": data.thumbURL, "overview": data.overview, "memo": text])
-
-        do {
-            try realm.write {
-                realm.add(item, update: .modified)
-            }
-        } catch {
-            print(error)
-        }
-
-        dismiss(animated: true)
-        
-    }
-    
-    @objc func backBarButtonClicked() {
-        if transition == .home {
-            dismiss(animated: true)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-
 }
-
-extension DetailViewController: UITextViewDelegate {
-    
-    //편집 끝
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if memoTextView.text.isEmpty {
-            memoTextView.text = placeholder
-            memoTextView.textColor = .lightGray
-        }
-    }
-    
-    //편집 시작
-    //메모 텍스트뷰가 플레이스홀더와 같다면
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if memoTextView.text == placeholder {
-            memoTextView.text = ""
-            memoTextView.textColor = .darkGray
-        }
-    }
-
-}
-
-//제스처로 팝
-extension DetailViewController: UIGestureRecognizerDelegate { }
