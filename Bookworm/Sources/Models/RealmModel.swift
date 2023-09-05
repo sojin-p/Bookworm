@@ -16,8 +16,9 @@ class BookTable: Object {
     @Persisted var price: Int
     @Persisted var thumbURL: String?
     @Persisted var overview: String
+    @Persisted var memo: String?
     
-    convenience init(author: String, publisher: String, title: String, price: Int, thumbURL: String?, overview: String) {
+    convenience init(author: String, publisher: String, title: String, price: Int, thumbURL: String?, overview: String, memo: String?) {
         self.init()
         self.author = author
         self.publisher = publisher
@@ -25,5 +26,6 @@ class BookTable: Object {
         self.price = price
         self.thumbURL = thumbURL
         self.overview = overview
+        self.memo = memo
     }
 }

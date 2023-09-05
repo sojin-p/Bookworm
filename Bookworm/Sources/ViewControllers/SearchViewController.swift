@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
         
         let realm = try! Realm()
         
-        let task = BookTable(author: item.authors, publisher: item.publisher, title: item.title, price: item.price, thumbURL: item.imageURL, overview: item.overview)
+        let task = BookTable(author: item.authors, publisher: item.publisher, title: item.title, price: item.price, thumbURL: item.imageURL, overview: item.overview, memo: item.memo)
         
         try! realm.write {
             realm.add(task)

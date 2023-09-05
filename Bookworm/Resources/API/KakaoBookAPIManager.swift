@@ -42,7 +42,7 @@ class KakaoBookAPIManager {
                     let price = item["price"].intValue
                     let overview = item["contents"].stringValue
                     
-                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview)
+                    let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview, memo: nil)
                     
                     completionHandler(data)
                     
@@ -90,7 +90,7 @@ class KakaoBookAPIManager {
                         let price = item["price"].intValue
                         let overview = item["contents"].stringValue
                         
-                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview)
+                        let data = Book(title: title, authors: authorsName, publisher: publisherName, imageURL: imageURL, price: price, overview: overview, memo: nil)
                         
                         completionHandler(data, isEnd)
                         

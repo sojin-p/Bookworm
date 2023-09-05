@@ -35,7 +35,7 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
         super.viewDidLoad()
         
         setUI()
-
+        print(data,"내용보기")
     }
     
     @IBAction func backTapped(_ sender: UITapGestureRecognizer) {
@@ -43,15 +43,20 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     }
     
     func setUI() {
+        guard let data else { return }
         
         memoTextView.delegate = self
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-        memoTextView.text = placeholder
-        memoTextView.textColor = .lightGray
+        if let memo = data.memo {
+            memoTextView.text = memo
+            memoTextView.textColor = .black
+        } else {
+            memoTextView.text = placeholder
+            memoTextView.textColor = .lightGray
+        }
         memoTextView.textAlignment = .center
         
-        guard let data else { return }
 //        navTitle = data.mainTitle
         view.backgroundColor = mainBackColor
         navTitle = data.title
@@ -78,15 +83,39 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
         case .home:
             let backButtonImage = UIImage(systemName: "xmark")
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+
         case .myBook:
             let backButtonImage = UIImage(systemName: "chevron.left")
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
         }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
-    @objc
-    func backBarButtonClicked() {
+    @objc func saveButtonClicked() {
+        
+        guard let data else { return }
+
+        let realm = try! Realm()
+        
+        guard let text = memoTextView.text else { return }
+        let item = BookTable(value: ["_id": data._id, "author": data.author, "publisher": data.publisher, "title": data.title, "price": data.price, "thumbURL": data.thumbURL, "overview": data.overview, "memo": text])
+
+        do {
+            try realm.write {
+                realm.add(item, update: .modified)
+            }
+        } catch {
+            print(error)
+        }
+
+        dismiss(animated: true)
+        
+    }
+    
+    @objc func backBarButtonClicked() {
         if transition == .home {
             dismiss(animated: true)
         } else {

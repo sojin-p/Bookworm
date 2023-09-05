@@ -15,6 +15,7 @@ struct Book {
     let imageURL: String
     let price: Int
     let overview: String
+    let memo: String?
     var like: Bool = false
     
     var subTitle: String {
