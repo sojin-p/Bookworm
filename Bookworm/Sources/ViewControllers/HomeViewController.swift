@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        readTasks()
+        fatchTasks()
         setUI()
         setBarButton()
         callRequest()
@@ -53,13 +53,9 @@ class HomeViewController: UIViewController, NavigationUIProtocol {
         
     }
     
-    func readTasks() {
-        let realm = try! Realm()
-        let tasks = realm.objects(BookTable.self).sorted(byKeyPath: "_id", ascending: false)
-
-        self.tasks = tasks
-//        print(tasks, "불러오기")
-        print(realm.configuration.fileURL, "경로")
+    func fatchTasks() {
+        
+        self.tasks = BookTableRepository.shared.fatchItem()
     }
     
     func callRequest() {
@@ -108,8 +104,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.transition = .home
+        guard let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
         //네비
         let nav = UINavigationController(rootViewController: detailVC)
@@ -117,7 +112,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         nav.modalTransitionStyle = .coverVertical
         nav.modalPresentationStyle = .fullScreen
         
-        detailVC.data = tasks[indexPath.item]
+        detailVC.transition = .best
+        detailVC.bestData = bookList[indexPath.item]
         
         tableView.reloadRows(at: [indexPath], with: .none)
         
@@ -163,7 +159,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let sb = UIStoryboard(name: "Main", bundle: nil)
         guard let detailVC = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         
-        detailVC.transition = .home
+        detailVC.transition = .recent
         
         let nav = UINavigationController(rootViewController: detailVC)
         nav.modalTransitionStyle = .coverVertical

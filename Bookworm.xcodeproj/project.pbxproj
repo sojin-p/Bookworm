@@ -19,6 +19,7 @@
 		2387E7E12AA600040019E4F9 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E02AA600040019E4F9 /* RealmModel.swift */; };
 		2387E7E62AA61B7A0019E4F9 /* KakaoBookAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */; };
 		2387E7ED2AA727010019E4F9 /* Extension+FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */; };
+		2387E7F22AA88A0A0019E4F9 /* BookTableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2387E7F12AA88A0A0019E4F9 /* BookTableRepository.swift */; };
 		239071A32A77B1F500C52AFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A22A77B1F500C52AFB /* AppDelegate.swift */; };
 		239071A52A77B1F500C52AFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A42A77B1F500C52AFB /* SceneDelegate.swift */; };
 		239071A72A77B1F500C52AFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239071A62A77B1F500C52AFB /* SearchViewController.swift */; };
@@ -48,6 +49,7 @@
 		2387E7E02AA600040019E4F9 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		2387E7E52AA61B7A0019E4F9 /* KakaoBookAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoBookAPIManager.swift; sourceTree = "<group>"; };
 		2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+FileManager.swift"; sourceTree = "<group>"; };
+		2387E7F12AA88A0A0019E4F9 /* BookTableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableRepository.swift; sourceTree = "<group>"; };
 		2390719F2A77B1F500C52AFB /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		239071A22A77B1F500C52AFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		239071A42A77B1F500C52AFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,10 +149,10 @@
 		232408B72A8276BD000A1024 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2387E7F02AA889F20019E4F9 /* Realm */,
 				232408BE2A83BFDA000A1024 /* Book.swift */,
 				239071BE2A77CD4C00C52AFB /* Movie.swift */,
 				239071C02A77CD7500C52AFB /* MovieInfo.swift */,
-				2387E7E02AA600040019E4F9 /* RealmModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,6 +174,15 @@
 				2387E7EC2AA727010019E4F9 /* Extension+FileManager.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		2387E7F02AA889F20019E4F9 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				2387E7E02AA600040019E4F9 /* RealmModel.swift */,
+				2387E7F12AA88A0A0019E4F9 /* BookTableRepository.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		239071962A77B1F500C52AFB = {
@@ -306,6 +317,7 @@
 				239071D42A7A55AD00C52AFB /* RecentCollectionViewCell.swift in Sources */,
 				2387E7E12AA600040019E4F9 /* RealmModel.swift in Sources */,
 				2387E7E62AA61B7A0019E4F9 /* KakaoBookAPIManager.swift in Sources */,
+				2387E7F22AA88A0A0019E4F9 /* BookTableRepository.swift in Sources */,
 				239071C12A77CD7500C52AFB /* MovieInfo.swift in Sources */,
 				239071B72A77B2E800C52AFB /* BookCollectionViewController.swift in Sources */,
 			);

@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import RealmSwift
 import Kingfisher
 
 enum TransitionType {
-    case home, myBook
+    case best, recent, myBook
 }
 
 class DetailViewController: UIViewController, NavigationUIProtocol {
@@ -27,8 +26,8 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     var navTitle: String { get { return "타이틀" } set { title = newValue } }
     
     var data: BookTable?
-    var transition: TransitionType = .home
-    let realm = try! Realm()
+    var bestData: Book?
+    var transition: TransitionType = .recent
     
     let placeholder = "여기에 메모를 입력하세요!"
     
@@ -36,7 +35,7 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
         super.viewDidLoad()
         
         setUI()
-        print(data,"내용보기")
+//        print(data,"내용보기")
     }
     
     @IBAction func backTapped(_ sender: UITapGestureRecognizer) {
@@ -50,28 +49,23 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
     @objc func saveButtonClicked() {
         
         guard let data else { return }
-        
         guard let text = memoTextView.text else { return }
-        let item = BookTable(value: ["_id": data._id, "author": data.author, "publisher": data.publisher, "title": data.title, "price": data.price, "thumbURL": data.thumbURL, "overview": data.overview, "memo": text])
-
-        do {
-            try realm.write {
-                realm.add(item, update: .modified)
-            }
-        } catch {
-            print(error)
-        }
+        
+        BookTableRepository.shared.updateItem(id: data._id, memo: text)
 
         dismiss(animated: true)
         
     }
     
     @objc func backBarButtonClicked() {
-        if transition == .home {
+        
+        switch transition {
+        case .best, .recent:
             dismiss(animated: true)
-        } else {
+        case .myBook:
             navigationController?.popViewController(animated: true)
         }
+        
     }
     
     func showAlert(title: String, message: String?) {
@@ -83,13 +77,7 @@ class DetailViewController: UIViewController, NavigationUIProtocol {
             
             self.removeImageFromDocument(fileName: "book_\(data._id).jpg")
             
-            do {
-                try self.realm.write {
-                    self.realm.delete(data)
-                }
-            } catch {
-                print(error)
-            }
+            BookTableRepository.shared.deleteItem(data: data)
             
             self.dismiss(animated: true)
             
@@ -166,21 +154,30 @@ extension DetailViewController: UIGestureRecognizerDelegate {
     }
     
     func setBarButton() {
+        
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
+        
+        let backButtonImage = UIImage(systemName: "xmark")
+        
         switch transition {
-        case .home:
-            let backButtonImage = UIImage(systemName: "xmark")
+        case .recent:
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
-
+            
+            let deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: #selector(deleteButtonClicked))
+            deleteButton.tintColor = .red
+            
+            navigationItem.rightBarButtonItems = [saveButton, deleteButton]
+            
         case .myBook:
             let backButtonImage = UIImage(systemName: "chevron.left")
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
+        
+        case .best:
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", image: backButtonImage, target: self, action: #selector(backBarButtonClicked))
         }
         
-        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
-        let deleteButton = UIBarButtonItem(title: "삭제", style: .plain, target: self, action: #selector(deleteButtonClicked))
-        deleteButton.tintColor = .red
-        navigationItem.rightBarButtonItems = [saveButton, deleteButton]
-        
+        navigationItem.rightBarButtonItem = saveButton
         navigationItem.leftBarButtonItem?.tintColor = .black
+        
     }
 }

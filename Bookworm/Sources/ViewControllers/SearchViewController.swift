@@ -7,7 +7,6 @@
 
 import UIKit
 import Kingfisher
-import RealmSwift
 
 class SearchViewController: UIViewController {
     
@@ -52,14 +51,9 @@ class SearchViewController: UIViewController {
     
     func createTasks(item: Book) {
         
-        let realm = try! Realm()
-        
         let task = BookTable(author: item.authors, publisher: item.publisher, title: item.title, price: item.price, thumbURL: item.imageURL, overview: item.overview, memo: item.memo)
         
-        try! realm.write {
-            realm.add(task)
-            print("Realm Add Succeed")
-        }
+        BookTableRepository.shared.createItem(task)
         
         guard let bookImage else { return }
         saveImageToDocument(fileName: "book_\(task._id).jpg", image: bookImage)
